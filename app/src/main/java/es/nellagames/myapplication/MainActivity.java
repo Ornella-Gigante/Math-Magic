@@ -1,4 +1,4 @@
-package com.example.mathmagic;
+package es.nellagames.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
