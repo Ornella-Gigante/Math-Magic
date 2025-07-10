@@ -3,6 +3,7 @@ package es.nellagames.myapplication;
 import static android.os.Build.VERSION_CODES.R;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import es.nellagames.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
+
+    // To display best score in MainActivity.java
+    SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+    int bestScore = prefs.getInt("best_score", 0);
+// Show bestScore in a TextView
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

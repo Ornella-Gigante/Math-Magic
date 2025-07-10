@@ -1,6 +1,7 @@
 package es.nellagames.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,5 +40,13 @@ public class ResultsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+        int bestScore = prefs.getInt("best_score", 0);
+        if (score > bestScore) {
+            prefs.edit().putInt("best_score", score).apply();
+        }
+
     }
 }
