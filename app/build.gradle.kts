@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "es.nellagames.myapplication"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "es.nellagames.myapplication"
@@ -32,7 +32,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
