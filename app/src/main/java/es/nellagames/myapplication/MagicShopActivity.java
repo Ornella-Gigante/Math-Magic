@@ -19,10 +19,12 @@ public class MagicShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magic_shop);
 
+        // Leer los puntos guardados en SharedPreferences
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
         magicPoints = prefs.getInt("magic_points", 0);
         avatar1Unlocked = prefs.getBoolean("avatar1_unlocked", false);
 
+        // Mostrar el saldo de puntos mágicos en pantalla
         TextView pointsView = findViewById(R.id.text_points);
         pointsView.setText("Magic Points: " + magicPoints);
 

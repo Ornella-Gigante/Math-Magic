@@ -1,6 +1,7 @@
 package es.nellagames.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,13 @@ public class ChallengeActivity extends AppCompatActivity {
                 int selectedAnswer = Integer.parseInt(clickedButton.getText().toString());
                 if (selectedAnswer == correctAnswer) {
                     score++;
+
+                    // Sumar puntos mágicos por respuesta correcta
+                    int puntosGanados = 10; // Puedes ajustar la cantidad
+                    SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+                    int magicPoints = prefs.getInt("magic_points", 0);
+                    magicPoints += puntosGanados;
+                    prefs.edit().putInt("magic_points", magicPoints).apply();
                 }
                 questionCount++;
                 if (questionCount < totalQuestions) {
