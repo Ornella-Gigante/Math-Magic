@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-</selector>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Star Shape -->
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M24,4 L29.09,17.26 L43.64,17.27 L31.55,25.97 L36.63,39.23 L24,30.52 L11.37,39.23 L16.45,25.97 L4.36,17.27 L18.91,17.26 Z"/>
+    <!-- Outer Glow -->
+    <path
+        android:fillColor="#00FFFFFF"
+        android:strokeColor="#FFF9A825"
+        android:strokeWidth="4"
+        android:pathData="M24,4 L29.09,17.26 L43.64,17.27 L31.55,25.97 L36.63,39.23 L24,30.52 L11.37,39.23 L16.45,25.97 L4.36,17.27 L18.91,17.26 Z"
+        android:strokeAlpha="0.5"/>
+    <!-- Soft white glow for extra effect -->
+    <path
+        android:fillColor="#00FFFFFF"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M24,4 L29.09,17.26 L43.64,17.27 L31.55,25.97 L36.63,39.23 L24,30.52 L11.37,39.23 L16.45,25.97 L4.36,17.27 L18.91,17.26 Z"
+        android:strokeAlpha="0.2"/>
+</vector>
