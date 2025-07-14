@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_gradient"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <!-- Avatar asking -->
+    <ImageView
+        android:id="@+id/avatar_asking"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/avatar_asking"
+        android:contentDescription="Avatar asking"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Question text -->
+    <TextView
+        android:id="@+id/text_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What is 7 - 4?"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"/>
+
+    <!-- Options -->
+    <Button
+        android:id="@+id/button_option1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/button_option2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/button_option3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="4"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/button_option4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="5"/>
+
+</LinearLayout>
