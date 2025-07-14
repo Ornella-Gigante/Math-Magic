@@ -64,7 +64,10 @@ public class QuizGroupActivity extends AppCompatActivity {
                     if (currentQuestionIndex < questions.length) {
                         loadQuestion(questionView, optionButtons);
                     } else {
-                        // Aquí puedes navegar a la pantalla de resultados o reiniciar el quiz
+                        Intent intent = new Intent(QuizGroupActivity.this, ResultsActivity.class);
+                        intent.putExtra("score", magicPoints / 10);
+                        intent.putExtra("total", questions.length);
+                        startActivity(intent);
                         finish();
                     }
                 }
