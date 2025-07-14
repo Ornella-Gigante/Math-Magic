@@ -24,10 +24,14 @@
             </intent-filter>
         </activity>
 
-        <!-- Otras actividades, registra cada una con el nombre relativo (con punto) -->
+        <!-- Actividades existentes -->
         <activity android:name=".ChallengeActivity" android:exported="false" />
         <activity android:name=".ResultsActivity" android:exported="false" />
         <activity android:name=".MagicShopActivity" android:exported="false" />
+
+        <!-- Nuevas actividades para el quiz con avatar y celebraciones -->
+        <activity android:name=".QuizGroupActivity" android:exported="false" />
+        <activity android:name=".MilestoneActivity" android:exported="false" />
 
     </application>
 </manifest>
