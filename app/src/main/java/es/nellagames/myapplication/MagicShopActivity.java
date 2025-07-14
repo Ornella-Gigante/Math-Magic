@@ -59,7 +59,7 @@ public class MagicShopActivity extends AppCompatActivity {
             }
         });
 
-        
+
     }
 
     @Override

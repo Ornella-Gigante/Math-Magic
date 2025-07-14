@@ -5,9 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
-import es.nellagames.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,19 +15,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize SharedPreferences and get best score inside onCreate
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
         int bestScore = prefs.getInt("best_score", 0);
 
-        // Example: Show bestScore in a TextView (uncomment and add your TextView in XML if needed)
-        // TextView bestScoreView = findViewById(R.id.text_best_score);
-        // bestScoreView.setText("Best Score: " + bestScore);
+        // Mostrar el mejor puntaje si el TextView existe en el layout
+        TextView bestScoreView = findViewById(R.id.text_best_score);
+        if (bestScoreView != null) {
+            bestScoreView.setText("Best Score: " + bestScore);
+        }
 
         Button startButton = findViewById(R.id.button_start);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ChallengeActivity.class);
+                Intent intent = new Intent(MainActivity.this, QuizGroupActivity.class);
                 startActivity(intent);
             }
         });
