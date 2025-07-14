@@ -13,31 +13,20 @@ public class MagicShopActivity extends AppCompatActivity {
 
     private int magicPoints;
     private boolean avatar1Unlocked;
+    private TextView pointsView;
+    private Button unlockAvatar1;
+    private ImageView avatar1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magic_shop);
 
-        // Leer los puntos guardados en SharedPreferences
-        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
-        magicPoints = prefs.getInt("magic_points", 0);
-        avatar1Unlocked = prefs.getBoolean("avatar1_unlocked", false);
+        pointsView = findViewById(R.id.text_points);
+        unlockAvatar1 = findViewById(R.id.button_unlock_avatar1);
+        avatar1 = findViewById(R.id.avatar1);
 
-        // Mostrar el saldo de puntos mágicos en pantalla
-        TextView pointsView = findViewById(R.id.text_points);
-        pointsView.setText("Magic Points: " + magicPoints);
-
-        Button unlockAvatar1 = findViewById(R.id.button_unlock_avatar1);
-        ImageView avatar1 = findViewById(R.id.avatar1);
-
-        if (avatar1Unlocked) {
-            unlockAvatar1.setEnabled(false);
-            unlockAvatar1.setText("Unlocked!");
-            avatar1.setAlpha(1.0f);
-        } else {
-            avatar1.setAlpha(0.5f);
-        }
+        refreshShop();
 
         unlockAvatar1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,30 +34,40 @@ public class MagicShopActivity extends AppCompatActivity {
                 if (magicPoints >= 100 && !avatar1Unlocked) {
                     magicPoints -= 100;
                     avatar1Unlocked = true;
+                    SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
                     prefs.edit()
                             .putInt("magic_points", magicPoints)
                             .putBoolean("avatar1_unlocked", true)
                             .apply();
-                    pointsView.setText("Magic Points: " + magicPoints);
-                    unlockAvatar1.setEnabled(false);
-                    avatar1.setAlpha(1.0f);
+                    refreshShop();
                     Toast.makeText(MagicShopActivity.this, "Avatar unlocked!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MagicShopActivity.this, "Not enough points!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
-        magicPoints = prefs.getInt("magic_points", 0);
-        TextView pointsView = findViewById(R.id.text_points);
-        pointsView.setText("Magic Points: " + magicPoints);
+        refreshShop();
     }
 
+    private void refreshShop() {
+        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+        magicPoints = prefs.getInt("magic_points", 0);
+        avatar1Unlocked = prefs.getBoolean("avatar1_unlocked", false);
+
+        pointsView.setText("Magic Points: " + magicPoints);
+        if (avatar1Unlocked) {
+            unlockAvatar1.setEnabled(false);
+            unlockAvatar1.setText("Unlocked!");
+            avatar1.setAlpha(1.0f);
+        } else {
+            unlockAvatar1.setEnabled(true);
+            unlockAvatar1.setText("Unlock (100 pts)");
+            avatar1.setAlpha(0.5f);
+        }
+    }
 }
