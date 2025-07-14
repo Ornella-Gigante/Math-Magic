@@ -25,7 +25,7 @@ public class ResultsActivity extends AppCompatActivity {
         playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResultsActivity.this, ChallengeActivity.class);
+                Intent intent = new Intent(ResultsActivity.this, QuizGroupActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -41,12 +41,10 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
         int bestScore = prefs.getInt("best_score", 0);
         if (score > bestScore) {
             prefs.edit().putInt("best_score", score).apply();
         }
-
     }
 }
