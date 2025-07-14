@@ -1,59 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg_gradient"
-    android:padding="24dp"
-    android:gravity="center_horizontal">
+    android:background= "@drawable/bg_gradient"
+    android:padding="24dp">
 
-    <!-- Avatar asking -->
+    <!-- Avatar preguntando -->
     <ImageView
-        android:id="@+id/avatar_asking"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/avatar_asking"
-        android:contentDescription="Avatar asking"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="12dp"/>
+        android:id="@+id/avatar_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/welcome"
+        android:contentDescription="Avatar"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
 
-    <!-- Question text -->
-    <TextView
-        android:id="@+id/text_question"
+    <!-- Pregunta en CardView con sombra -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What is 7 - 4?"
-        android:textSize="22sp"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"/>
+        app:cardElevation="8dp"
+        app:cardCornerRadius="12dp"
+        android:layout_toEndOf="@id/avatar_image"
+        android:layout_alignTop="@id/avatar_image"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
-    <!-- Options -->
-    <Button
-        android:id="@+id/button_option1"
+        <TextView
+            android:id="@+id/text_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Do you study at the university?"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:fontFamily="sans-serif-medium" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- Opciones de respuesta -->
+    <LinearLayout
+        android:id="@+id/options_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2"
-        android:layout_marginBottom="10dp"/>
+        android:orientation="vertical"
+        android:layout_below="@id/avatar_image"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
-    <Button
-        android:id="@+id/button_option2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="3"
-        android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/option1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Yes"
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:background="@drawable/option_button_background"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif" />
 
-    <Button
-        android:id="@+id/button_option3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="4"
-        android:layout_marginBottom="10dp"/>
-
-    <Button
-        android:id="@+id/button_option4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="5"/>
-
-</LinearLayout>
+        <Button
+            android:id="@+id/option2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="No"
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:background="@drawable/option_button_background"
+            android:fontFamily="sans-serif" />
+    </LinearLayout>
+</RelativeLayout>
