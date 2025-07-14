@@ -51,7 +51,6 @@ public class MagicShopActivity extends AppCompatActivity {
                             .apply();
                     pointsView.setText("Magic Points: " + magicPoints);
                     unlockAvatar1.setEnabled(false);
-                    unlockAvatar1.setText("Unlocked!");
                     avatar1.setAlpha(1.0f);
                     Toast.makeText(MagicShopActivity.this, "Avatar unlocked!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -59,5 +58,17 @@ public class MagicShopActivity extends AppCompatActivity {
                 }
             }
         });
+
+        
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+        magicPoints = prefs.getInt("magic_points", 0);
+        TextView pointsView = findViewById(R.id.text_points);
+        pointsView.setText("Magic Points: " + magicPoints);
+    }
+
 }
