@@ -20,7 +20,20 @@ public class MilestoneActivity extends AppCompatActivity {
         ImageView avatarCelebrating = findViewById(R.id.avatar_celebrating);
         TextView milestoneMessage = findViewById(R.id.milestone_message);
 
-        milestoneMessage.setText("Congratulations! You reached " + milestone + " points!");
+        // Cambiar mensaje e imagen según milestone
+        if (milestone >= 200) {
+            milestoneMessage.setText("Legendary! You reached " + milestone + " magic points!");
+            avatarCelebrating.setImageResource(R.drawable.avatar3); // Prepara esta imagen en tus drawables
+        } else if (milestone >= 100) {
+            milestoneMessage.setText("Amazing! You reached " + milestone + " magic points!");
+            avatarCelebrating.setImageResource(R.drawable.avatar2);    // Prepara esta imagen en tus drawables
+        } else if (milestone >= 50) {
+            milestoneMessage.setText("Great! You reached " + milestone + " magic points!");
+            avatarCelebrating.setImageResource(R.drawable.avatar1);  // Usa tu imagen de celebración básica
+        } else {
+            milestoneMessage.setText("Congratulations! You reached a new milestone!");
+            avatarCelebrating.setImageResource(R.drawable.celebrate);
+        }
 
         Button magicShopButton = findViewById(R.id.button_magic_shop);
         magicShopButton.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +54,5 @@ public class MilestoneActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        // Opcional: Cambia la imagen o mensaje dependiendo del milestone
-        // if (milestone >= 100) { ... }
     }
 }
