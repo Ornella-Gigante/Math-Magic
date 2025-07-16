@@ -12,25 +12,44 @@ public class QuizGroupActivity extends AppCompatActivity {
 
     private int magicPoints;
     private int currentQuestionIndex = 0;
+
+    // Preguntas matemáticas variadas en inglés, incluyendo problemas narrados
     private String[] questions = {
-            "What is 2 + 3?",
-            "What is 7 - 4?",
-            "What is 5 x 2?",
-            "What is 12 / 4?"
+            "What is 3 + 5?",
+            "Emily has 3 apples and buys 4 more. How many apples does she have now?",
+            "What is 12 - 7?",
+            "Liam has 10 candies. He wants to share them equally between him and 4 friends. How many candies does each child get?",
+            "What is 4 × 2?",
+            "There are 12 cookies on a plate. If Mia eats 5 of them, how many cookies are left?",
+            "What is 20 ÷ 5?",
+            "A farmer has 6 baskets. Each basket contains 8 oranges. How many oranges does the farmer have altogether?",
+            "Which is the largest number: 9, 13, 7, 11?",
+            "Fill in the blank: 5 + __ = 9"
     };
+
+    // Opciones múltiples para cada pregunta
     private String[][] options = {
-            {"4", "5", "6", "7"},
+            {"6", "7", "8", "9"},
+            {"5", "6", "7", "8"},
+            {"3", "4", "5", "6"},
+            {"2", "3", "5", "10"},
+            {"6", "7", "8", "9"},
+            {"5", "6", "7", "8"},
             {"2", "3", "4", "5"},
-            {"7", "8", "10", "12"},
+            {"14", "24", "36", "48"},
+            {"9", "13", "7", "11"},
             {"2", "3", "4", "5"}
     };
-    private int[] correctAnswers = {1, 1, 2, 1}; // Index of correct option
+
+    // Índice de la opción correcta (empezando desde 0)
+    private int[] correctAnswers = {2, 2, 1, 0, 2, 2, 0, 3, 1, 2};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_group);
 
+        // Persistencia de puntos mágicos
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
         magicPoints = prefs.getInt("magic_points", 0);
 
@@ -52,6 +71,7 @@ public class QuizGroupActivity extends AppCompatActivity {
                     if (idx == correctAnswers[currentQuestionIndex]) {
                         magicPoints += 10;
                         prefs.edit().putInt("magic_points", magicPoints).apply();
+                        // Puedes poner feedback animado/toast aquí si lo deseas
                         if (magicPoints % 50 == 0) {
                             Intent intent = new Intent(QuizGroupActivity.this, MilestoneActivity.class);
                             intent.putExtra("milestone", magicPoints);
@@ -64,8 +84,9 @@ public class QuizGroupActivity extends AppCompatActivity {
                     if (currentQuestionIndex < questions.length) {
                         loadQuestion(questionView, optionButtons);
                     } else {
+                        // Ir a resultado final o reiniciar quiz
                         Intent intent = new Intent(QuizGroupActivity.this, ResultsActivity.class);
-                        intent.putExtra("score", magicPoints / 10);
+                        intent.putExtra("score", magicPoints / 10); // Ejemplo de cálculo
                         intent.putExtra("total", questions.length);
                         startActivity(intent);
                         finish();
