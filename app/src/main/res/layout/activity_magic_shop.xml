@@ -92,7 +92,7 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="16dp"
                 android:padding="8dp"
-                android:background="@drawable/bg_gradient">
+                android:background="@drawable/avatar_card_bg">
 
                 <ImageView
                     android:id="@+id/avatar1"
@@ -117,7 +117,7 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="16dp"
                 android:padding="8dp"
-                android:background="@drawable/bg_gradient">
+                android:background="@drawable/avatar_card_bg">
 
                 <ImageView
                     android:id="@+id/avatar2"
@@ -142,7 +142,7 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="16dp"
                 android:padding="8dp"
-                android:background="@drawable/bg_gradient">
+                android:background="@drawable/avatar_card_bg">
 
                 <ImageView
                     android:id="@+id/avatar3"
@@ -167,7 +167,7 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="16dp"
                 android:padding="8dp"
-                android:background="@drawable/bg_gradient">
+                android:background="@drawable/avatar_card_bg">
 
                 <ImageView
                     android:id="@+id/avatar4"
@@ -192,7 +192,7 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="16dp"
                 android:padding="8dp"
-                android:background="@drawable/bg_gradient">
+                android:background="@drawable/avatar_card_bg">
 
                 <ImageView
                     android:id="@+id/avatar5"

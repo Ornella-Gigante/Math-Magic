@@ -1,5 +1,6 @@
 package es.nellagames.myapplication;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,17 @@ public class MagicShopActivity extends AppCompatActivity {
         pointsView = findViewById(R.id.text_points);
         unlockAvatar1 = findViewById(R.id.button_unlock_avatar1);
         avatar1 = findViewById(R.id.avatar1);
+
+        // Agrega el botón para volver al menú principal
+        Button mainMenuButton = findViewById(R.id.button_main_menu);
+        mainMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MagicShopActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         refreshShop();
 
