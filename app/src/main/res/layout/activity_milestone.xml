@@ -1,26 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/gradient_purple"
     android:padding="24dp">
 
+    <!-- Estrellas decorativas en las esquinas -->
     <ImageView
-        android:id="@+id/avatar_celebrating"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:src="@drawable/celebrate"
-        android:contentDescription="Avatar celebrating"
-        android:layout_marginBottom="24dp"/>
+        android:id="@+id/star_top_left"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/star_glow"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:alpha="0.8"/>
 
-    <TextView
-        android:id="@+id/milestone_message"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/star_top_right"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/star_glow"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="20dp"
+        android:alpha="0.7"/>
+
+    <ImageView
+        android:id="@+id/star_bottom_left"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/star_glow"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:alpha="0.7"/>
+
+    <ImageView
+        android:id="@+id/star_bottom_right"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/star_glow"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:alpha="0.9"/>
+
+    <LinearLayout
+        android:id="@+id/center_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Congratulations! You reached 50 points!"
-        android:textSize="24sp"
-        android:textColor="#FFD600"
-        android:gravity="center"/>
-</LinearLayout>
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/avatar_celebrating"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:src="@drawable/celebrate"
+            android:contentDescription="Avatar celebrating"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:id="@+id/milestone_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Congratulations! You reached 50 points!"
+            android:textSize="24sp"
+            android:textColor="#FFD600"
+            android:gravity="center"
+            android:layout_marginBottom="32dp"/>
+
+        <Button
+            android:id="@+id/button_magic_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Magic Shop"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#7C4DFF"
+            android:elevation="3dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/button_main_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Main Menu"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#6D4C41"
+            android:elevation="3dp"/>
+    </LinearLayout>
+</RelativeLayout>
