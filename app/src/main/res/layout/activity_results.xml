@@ -48,19 +48,20 @@
         android:layout_marginBottom="16dp"
         android:text="Play Again" />
 
+    <!-- Imagen centrada debajo de los botones, con borde de estrella -->
+
     <Button
         android:id="@+id/button_main_menu"
-        android:layout_width="143dp"
-        android:layout_height="wrap_content"
+        android:layout_width="139dp"
+        android:layout_height="52dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="132dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginStart="137dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginBottom="322dp"
         android:text="Main Menu" />
 
-    <!-- Imagen centrada debajo de los botones, con borde de estrella -->
     <FrameLayout
         android:id="@+id/star_image_container"
         android:layout_width="200dp"
