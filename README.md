@@ -62,7 +62,7 @@ Welcome to **Math Magic**, a fun and simple educational game for kids! Help your
 3. Build and run on your Android device or emulator.
 4. Start your magical math adventure!
 
-# Credits 
+## Credits 
 
 🎵Music by <a href="https://pixabay.com/users/mountaindweller-16471232/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=192725">MountainDweller</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=192725">Pixabay</a>
 
