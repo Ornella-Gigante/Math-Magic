@@ -62,6 +62,15 @@ Welcome to **Math Magic**, a fun and simple educational game for kids! Help your
 3. Build and run on your Android device or emulator.
 4. Start your magical math adventure!
 
+# Credits 
+
+🎵Music by <a href="https://pixabay.com/users/mountaindweller-16471232/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=192725">MountainDweller</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=192725">Pixabay</a>
+
+🎵Music by <a href="https://freemusicarchive.org/music/xennial/single/bright-future/">Bright Future</a> by Xennial, used under a <a href="https://creativecommons.org/licenses/by/4.0/">CC Attribution 4.0 International License</a>, from Free Music Archive
+
+🎵Music by <a href="https://pixabay.com/users/backgroundmusicforvideo-46826676/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=368071">BackgroundMusicForVideo</a> from <a href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=368071">Pixabay</a>
+
+
 ## 🤝 Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
