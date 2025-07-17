@@ -2,6 +2,7 @@ package es.nellagames.myapplication;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ public class QuizGroupActivity extends AppCompatActivity {
 
     private int magicPoints;
     private int currentQuestionIndex = 0;
+    private MediaPlayer mediaPlayer;
 
     // Preguntas matemáticas variadas en inglés, incluyendo problemas narrados
     private String[] questions = {
@@ -49,7 +51,12 @@ public class QuizGroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_group);
 
-        // Persistencia de puntos mágicos
+        // --- Música de fondo para el juego/quizz ---
+        // Asegúrate de tener music_game.mp3 en res/raw/
+        mediaPlayer = MediaPlayer.create(this, R.raw.music_ingame);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
         magicPoints = prefs.getInt("magic_points", 0);
 
@@ -73,6 +80,12 @@ public class QuizGroupActivity extends AppCompatActivity {
                         prefs.edit().putInt("magic_points", magicPoints).apply();
                         // Puedes poner feedback animado/toast aquí si lo deseas
                         if (magicPoints % 50 == 0) {
+                            // Detén la música cuando vas a milestones
+                            if (mediaPlayer != null) {
+                                mediaPlayer.stop();
+                                mediaPlayer.release();
+                                mediaPlayer = null;
+                            }
                             Intent intent = new Intent(QuizGroupActivity.this, MilestoneActivity.class);
                             intent.putExtra("milestone", magicPoints);
                             startActivity(intent);
@@ -85,8 +98,13 @@ public class QuizGroupActivity extends AppCompatActivity {
                         loadQuestion(questionView, optionButtons);
                     } else {
                         // Ir a resultado final o reiniciar quiz
+                        if (mediaPlayer != null) {
+                            mediaPlayer.stop();
+                            mediaPlayer.release();
+                            mediaPlayer = null;
+                        }
                         Intent intent = new Intent(QuizGroupActivity.this, ResultsActivity.class);
-                        intent.putExtra("score", magicPoints / 10); // Ejemplo de cálculo
+                        intent.putExtra("score", magicPoints / 10);
                         intent.putExtra("total", questions.length);
                         startActivity(intent);
                         finish();
@@ -101,5 +119,31 @@ public class QuizGroupActivity extends AppCompatActivity {
         for (int i = 0; i < optionButtons.length; i++) {
             optionButtons[i].setText(options[currentQuestionIndex][i]);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
+            mediaPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        super.onDestroy();
     }
 }
