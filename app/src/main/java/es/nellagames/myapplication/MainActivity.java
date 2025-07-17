@@ -15,10 +15,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Mostrar el mejor puntaje al iniciar la actividad
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
         int bestScore = prefs.getInt("best_score", 0);
-
-        // Mostrar el mejor puntaje si el TextView existe en el layout
         TextView bestScoreView = findViewById(R.id.text_best_score);
         if (bestScoreView != null) {
             bestScoreView.setText("Best Score: " + bestScore);
@@ -41,5 +40,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    // Muestra el best score actualizado cada vez que se vuelve al menú principal
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+        int bestScore = prefs.getInt("best_score", 0);
+        TextView bestScoreView = findViewById(R.id.text_best_score);
+        if (bestScoreView != null) {
+            bestScoreView.setText("Best Score: " + bestScore);
+        }
     }
 }

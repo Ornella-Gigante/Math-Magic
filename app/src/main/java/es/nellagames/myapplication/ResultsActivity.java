@@ -21,6 +21,20 @@ public class ResultsActivity extends AppCompatActivity {
         TextView resultText = findViewById(R.id.text_result);
         resultText.setText("You scored " + score + " out of " + total + "!");
 
+        // Actualiza el best score inmediatamente si es necesario
+        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+        int bestScore = prefs.getInt("best_score", 0);
+        if (score > bestScore) {
+            prefs.edit().putInt("best_score", score).apply();
+            bestScore = score;
+        }
+
+        // Muestra el best score actualizado en esta pantalla si tienes el TextView
+        TextView bestScoreView = findViewById(R.id.text_best_score);
+        if (bestScoreView != null) {
+            bestScoreView.setText("Best Score: " + bestScore);
+        }
+
         Button playAgainButton = findViewById(R.id.button_play_again);
         playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,8 +55,8 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
-        int bestScore = prefs.getInt("best_score", 0);
+        prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+        bestScore = prefs.getInt("best_score", 0);
         if (score > bestScore) {
             prefs.edit().putInt("best_score", score).apply();
         }
