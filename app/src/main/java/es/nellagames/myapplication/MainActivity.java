@@ -2,6 +2,7 @@ package es.nellagames.myapplication;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,10 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // ---- MÚSICA DE INICIO ----
+        mediaPlayer = MediaPlayer.create(this, R.raw.music_intro);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         // Mostrar el mejor puntaje al iniciar la actividad
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
@@ -52,5 +60,25 @@ public class MainActivity extends AppCompatActivity {
         if (bestScoreView != null) {
             bestScoreView.setText("Best Score: " + bestScore);
         }
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        super.onDestroy();
     }
 }
