@@ -2,6 +2,7 @@ package es.nellagames.myapplication;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,17 +18,23 @@ public class MagicShopActivity extends AppCompatActivity {
     private TextView pointsView;
     private Button unlockAvatar1;
     private ImageView avatar1;
+    private MediaPlayer magicShopPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magic_shop);
 
+        // Inicia la música suave al entrar en la Magic Shop
+        magicShopPlayer = MediaPlayer.create(this, R.raw.music_intro);
+        magicShopPlayer.setLooping(true);
+        magicShopPlayer.start();
+
         pointsView = findViewById(R.id.text_points);
         unlockAvatar1 = findViewById(R.id.button_unlock_avatar1);
         avatar1 = findViewById(R.id.avatar1);
 
-        // Agrega el botón para volver al menú principal
+        // Botón para ir al menú principal
         Button mainMenuButton = findViewById(R.id.button_main_menu);
         mainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +71,29 @@ public class MagicShopActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         refreshShop();
+        // Reanuda la música si está pausada
+        if (magicShopPlayer != null && !magicShopPlayer.isPlaying()) {
+            magicShopPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Pausa la música al salir temporalmente de la Magic Shop
+        if (magicShopPlayer != null && magicShopPlayer.isPlaying()) {
+            magicShopPlayer.pause();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Libera el recurso de música al destruir la actividad
+        if (magicShopPlayer != null) {
+            magicShopPlayer.release();
+            magicShopPlayer = null;
+        }
+        super.onDestroy();
     }
 
     private void refreshShop() {
