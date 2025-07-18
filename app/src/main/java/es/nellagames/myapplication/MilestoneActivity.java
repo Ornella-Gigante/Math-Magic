@@ -32,13 +32,13 @@ public class MilestoneActivity extends AppCompatActivity {
         // Cambiar mensaje e imagen según milestone
         if (milestone >= 200) {
             milestoneMessage.setText("Legendary! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.avatar3); // Prepara esta imagen en tus drawables
+            avatarCelebrating.setImageResource(R.drawable.delfin); // Prepara esta imagen en tus drawables
         } else if (milestone >= 100) {
             milestoneMessage.setText("Amazing! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.avatar2);    // Prepara esta imagen en tus drawables
+            avatarCelebrating.setImageResource(R.drawable.boy);    // Prepara esta imagen en tus drawables
         } else if (milestone >= 50) {
             milestoneMessage.setText("Great! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.avatar1);  // Usa tu imagen de celebración básica
+            avatarCelebrating.setImageResource(R.drawable.wizard);  // Usa tu imagen de celebración básica
         } else {
             milestoneMessage.setText("Congratulations! You reached a new milestone!");
             avatarCelebrating.setImageResource(R.drawable.celebrate);
