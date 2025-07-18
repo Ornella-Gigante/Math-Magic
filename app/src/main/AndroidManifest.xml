@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PrepareMagicActivity" android:exported="false" />
         <activity android:name=".ChallengeActivity" android:exported="false" />
         <activity android:name=".ResultsActivity" android:exported="false" />
         <activity android:name=".MagicShopActivity" android:exported="false" />
