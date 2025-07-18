@@ -1,6 +1,7 @@
 package es.nellagames.myapplication;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
@@ -9,30 +10,59 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PrepareMagicActivity extends AppCompatActivity {
 
-    private static final int DELAY_MILLIS = 2300; // Tiempo de espera antes de pasar al quiz, ajustable
+    private static final int DELAY_MILLIS = 5000; // Waiting time before quiz starts
+    private MediaPlayer preparePlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prepare_magic); // Usa el layout proporcionado
+        setContentView(R.layout.activity_prepare_magic);
 
-        // Opcional: puedes agregar alguna animación simple aquí si lo deseas, por ejemplo:
+        // Start magical music
+        preparePlayer = MediaPlayer.create(this, R.raw.music_intro);
+        preparePlayer.setLooping(true);
+        preparePlayer.start();
+
         ImageView wizardAvatar = findViewById(R.id.wizard_avatar);
-        // wizardAvatar.setAlpha(0f); // Animación opcional
-        // wizardAvatar.animate().alpha(1f).setDuration(1400);
-
-        // Cambia el mensaje de "Loading..." si quieres agregar frases aleatorias motivadoras:
         TextView loadingText = findViewById(R.id.text_loading);
-        // loadingText.setText("Let the adventure begin..."); // Opcional
 
-        // Retardo automático: cuando termine, inicia la siguiente activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (preparePlayer != null) {
+                    preparePlayer.stop();
+                    preparePlayer.release();
+                    preparePlayer = null;
+                }
                 Intent intent = new Intent(PrepareMagicActivity.this, QuizGroupActivity.class);
                 startActivity(intent);
                 finish();
             }
         }, DELAY_MILLIS);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (preparePlayer != null && preparePlayer.isPlaying()) {
+            preparePlayer.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (preparePlayer != null && !preparePlayer.isPlaying()) {
+            preparePlayer.start();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (preparePlayer != null) {
+            preparePlayer.release();
+            preparePlayer = null;
+        }
+        super.onDestroy();
     }
 }
