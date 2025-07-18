@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QuizGroupActivity.class);
+                // Cambiado para lanzar PrepareMagicActivity, no directamente el quiz:
+                Intent intent = new Intent(MainActivity.this, PrepareMagicActivity.class);
                 startActivity(intent);
             }
         });
