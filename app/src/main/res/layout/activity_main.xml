@@ -5,15 +5,7 @@
     android:background="@drawable/bg_gradient">
 
     <!-- Decorative stars: corners and sides -->
-    <ImageView
-        android:id="@+id/star_top_left"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="12dp"
-        android:alpha="0.85"/>
+
 
     <TextView
         android:id="@+id/text_best_score"
@@ -26,72 +18,112 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
 
+    <!-- Moving stars (animated in code) -->
+    <ImageView
+        android:id="@+id/moving_star1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/star_glow"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:alpha="0.8"/>
+
+    <ImageView
+        android:id="@+id/moving_star2"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/star_glow"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="100dp"
+        android:alpha="0.7"/>
+
+    <ImageView
+        android:id="@+id/moving_star3"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/star_glow"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="72dp"
+        android:alpha="0.8"/>
+
+    <ImageView
+        android:id="@+id/moving_star4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/star_glow"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="100dp"
+        android:alpha="0.7"/>
+
+    <!-- Static corner stars for extra sparkle -->
+    <ImageView
+        android:id="@+id/star_top_left"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/star_glow"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="13dp"
+        android:alpha="0.5"/>
+
     <ImageView
         android:id="@+id/star_top_right"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:src="@drawable/star_glow"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="24dp"
-        android:alpha="0.7"/>
+        android:layout_margin="18dp"
+        android:alpha="0.45"/>
 
     <ImageView
         android:id="@+id/star_bottom_left"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:src="@drawable/star_glow"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="24dp"
-        android:alpha="0.7"/>
+        android:layout_margin="20dp"
+        android:alpha="0.45"/>
 
     <ImageView
         android:id="@+id/star_bottom_right"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:src="@drawable/star_glow"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:alpha="0.9"/>
+        android:layout_margin="15dp"
+        android:alpha="0.6"/>
 
-    <ImageView
-        android:id="@+id/star_top_center"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:alpha="0.5"/>
-
-    <ImageView
-        android:id="@+id/star_bottom_center"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:alpha="0.5"/>
-
-    <!-- Main Title -->
+    <!-- Improved Title -->
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Math Magic 🧙‍♂️✨"
-        android:textSize="32sp"
+        android:text="Math Magic"
+        android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFEC89"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:shadowColor="#AA00FF"
+        android:letterSpacing="0.10"
+        android:fontFamily="serif"
+        android:layout_marginTop="58dp"
+        android:shadowColor="#4A23AC"
         android:shadowDx="0"
-        android:shadowDy="2"
-        android:shadowRadius="8"/>
-
+        android:shadowDy="3"
+        android:shadowRadius="14"
+        android:padding="8dp"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Math Magic App"/>
     <!-- Start Game Button -->
 
     <!-- Magic Shop Button -->
@@ -140,10 +172,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="107dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="-22dp"
         android:contentDescription="Celebration image"
         android:src="@drawable/welcome" />
 
