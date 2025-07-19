@@ -21,7 +21,7 @@ public class QuizGroupActivity extends AppCompatActivity {
     private int magicPoints;
     private int currentQuestionIndex = 0;
     private MediaPlayer mediaPlayer;
-    boolean preguntaRespondida = false;
+    boolean preguntaRespondida;
 
     private String[] questions = {
             "What is 3 + 5?",
@@ -75,11 +75,12 @@ public class QuizGroupActivity extends AppCompatActivity {
                 findViewById(R.id.radio_button4)
         };
 
-        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            // Evita repeticiones:
+        // ✅ CORRECCIÓN: Cargar la primera pregunta al iniciar
+        loadQuestion(questionView, radioButtons, radioGroup);
 
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == -1 || preguntaRespondida) return;
-            preguntaRespondida = true; // Flag para evitar doble click
+            preguntaRespondida = true;
             int correctIndex = correctAnswers[currentQuestionIndex];
             int selectedIdx = -1;
 
@@ -93,12 +94,12 @@ public class QuizGroupActivity extends AppCompatActivity {
 
             if (selectedIdx == correctIndex) {
                 radioButtons[selectedIdx].setBackgroundResource(R.drawable.btn_correct);
-                radioButtons[selectedIdx].setText("Correcto");
+                radioButtons[selectedIdx].setText("That's correct!");
                 magicPoints += 10;
                 prefs.edit().putInt("magic_points", magicPoints).apply();
             } else if (selectedIdx != -1) {
                 radioButtons[selectedIdx].setBackgroundResource(R.drawable.btn_incorrect);
-                radioButtons[selectedIdx].setText("Incorrecto. Es: " + correctText);
+                radioButtons[selectedIdx].setText("Ups! That's wrong!");
                 radioButtons[correctIndex].setBackgroundResource(R.drawable.btn_correct);
             }
 
@@ -125,9 +126,8 @@ public class QuizGroupActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            }, 1300); // Tiempo para mostrar el feedback antes de avanzar
+            }, 1300);
         });
-
 
         animateFadeStar(findViewById(R.id.star_1), 0);
         animateFadeStar(findViewById(R.id.star_2), 350);
@@ -149,6 +149,7 @@ public class QuizGroupActivity extends AppCompatActivity {
             radioButtons[i].setEnabled(true);
         }
         radioGroup.clearCheck();
+        preguntaRespondida = false;
     }
 
     @Override
