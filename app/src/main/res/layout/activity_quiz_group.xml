@@ -50,7 +50,6 @@
         android:layout_centerInParent="true">
 
         <!-- Avatar y globo de pregunta -->
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,12 +82,7 @@
                     android:src="@drawable/welcome"/>
             </FrameLayout>
 
-
-
-
-
             <!-- Burbuja de pregunta tipo chat con pico -->
-
             <LinearLayout
                 android:id="@+id/bubble_row"
                 android:layout_width="wrap_content"
@@ -120,63 +114,68 @@
                         android:gravity="center"/>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Pico del globo de chat como vector drawable (bubble_tail) -->
+
             </LinearLayout>
         </LinearLayout>
 
         <!-- Botones de respuesta -->
-        <LinearLayout
-            android:id="@+id/options_container"
+        <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="35dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginEnd="52dp"
-            android:gravity="center_horizontal">
+            android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/option1"
+            <RadioButton
+                android:id="@+id/radio_button1"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="Option 1"
-                android:background="@drawable/option_button_background"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:textSize="23sp"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="20dp"/>
+                android:gravity="center"
+                android:textAlignment="center"
+                android:padding="18dp"
+                android:background="@drawable/default_option_bg"
+                android:layout_margin="8dp"/>
 
-            <Button
-                android:id="@+id/option2"
+            <RadioButton
+                android:id="@+id/radio_button2"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="Option 2"
-                android:background="@drawable/option_button_background"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:textSize="23sp"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="20dp"/>
+                android:gravity="center"
+                android:textAlignment="center"
+                android:padding="18dp"
+                android:background="@drawable/default_option_bg"
+                android:layout_margin="8dp"/>
 
-            <Button
-                android:id="@+id/option3"
+            <RadioButton
+                android:id="@+id/radio_button3"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="Option 3"
-                android:background="@drawable/option_button_background"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:textSize="23sp"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="20dp"/>
+                android:gravity="center"
+                android:textAlignment="center"
+                android:padding="18dp"
+                android:background="@drawable/default_option_bg"
+                android:layout_margin="8dp"/>
 
-            <Button
-                android:id="@+id/option4"
+            <RadioButton
+                android:id="@+id/radio_button4"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="Option 4"
-                android:background="@drawable/option_button_background"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:textSize="23sp"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:gravity="center"
+                android:textAlignment="center"
+                android:padding="18dp"
+                android:background="@drawable/default_option_bg"
+                android:layout_margin="8dp"/>
+        </RadioGroup>
+
     </LinearLayout>
 </RelativeLayout>
