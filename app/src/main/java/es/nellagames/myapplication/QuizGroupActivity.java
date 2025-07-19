@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.snackbar.Snackbar; // ¡Asegúrate de importar esto!
 import android.animation.ObjectAnimator;
 import android.animation.AnimatorSet;
 import android.view.animation.LinearInterpolator;
@@ -19,7 +20,6 @@ public class QuizGroupActivity extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     private MediaPlayer mediaPlayer;
 
-    // Preguntas matemáticas variadas en inglés, incluyendo problemas narrados
     private String[] questions = {
             "What is 3 + 5?",
             "Emily has 3 apples and buys 4 more. How many apples does she have now?",
@@ -33,7 +33,6 @@ public class QuizGroupActivity extends AppCompatActivity {
             "Fill in the blank: 5 + __ = 9"
     };
 
-    // Opciones múltiples para cada pregunta
     private String[][] options = {
             {"6", "7", "8", "9"},
             {"5", "6", "7", "8"},
@@ -46,8 +45,6 @@ public class QuizGroupActivity extends AppCompatActivity {
             {"9", "13", "7", "11"},
             {"2", "3", "4", "5"}
     };
-
-    // Índice de la opción correcta (empezando desde 0)
     private int[] correctAnswers = {2, 2, 1, 0, 2, 2, 0, 3, 1, 2};
 
     @Override
@@ -77,7 +74,13 @@ public class QuizGroupActivity extends AppCompatActivity {
             optionButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (idx == correctAnswers[currentQuestionIndex]) {
+                    // Desactiva todos los botones para evitar clicks dobles
+                    for (Button btn : optionButtons) btn.setEnabled(false);
+
+                    int correctIdx = correctAnswers[currentQuestionIndex];
+                    if (idx == correctIdx) {
+                        optionButtons[idx].setBackgroundResource(R.drawable.btn_correct);
+                        showFeedback(questionView, "✅ Correct! Well done!", true);
                         magicPoints += 10;
                         prefs.edit().putInt("magic_points", magicPoints).apply();
                         if (magicPoints % 50 == 0) {
@@ -92,27 +95,42 @@ public class QuizGroupActivity extends AppCompatActivity {
                             finish();
                             return;
                         }
-                    }
-                    currentQuestionIndex++;
-                    if (currentQuestionIndex < questions.length) {
-                        loadQuestion(questionView, optionButtons);
                     } else {
-                        if (mediaPlayer != null) {
-                            mediaPlayer.stop();
-                            mediaPlayer.release();
-                            mediaPlayer = null;
-                        }
-                        Intent intent = new Intent(QuizGroupActivity.this, ResultsActivity.class);
-                        intent.putExtra("score", magicPoints / 10);
-                        intent.putExtra("total", questions.length);
-                        startActivity(intent);
-                        finish();
+                        optionButtons[idx].setBackgroundResource(R.drawable.btn_incorrect);
+                        optionButtons[correctIdx].setBackgroundResource(R.drawable.btn_correct);
+                        String correctText = options[currentQuestionIndex][correctIdx];
+                        showFeedback(questionView, "❌ Incorrect. The correct answer is: " + correctText, false);
                     }
+
+                    questionView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (int j = 0; j < optionButtons.length; j++) {
+                                optionButtons[j].setBackgroundResource(R.drawable.btn_gradient_gold);
+                                optionButtons[j].setEnabled(true);
+                            }
+                            currentQuestionIndex++;
+                            if (currentQuestionIndex < questions.length) {
+                                loadQuestion(questionView, optionButtons);
+                            } else {
+                                if (mediaPlayer != null) {
+                                    mediaPlayer.stop();
+                                    mediaPlayer.release();
+                                    mediaPlayer = null;
+                                }
+                                Intent intent = new Intent(QuizGroupActivity.this, ResultsActivity.class);
+                                intent.putExtra("score", magicPoints / 10);
+                                intent.putExtra("total", questions.length);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                    }, 1200);
                 }
             });
         }
 
-        // Activa el parpadeo animado para las estrellas decorativas si están en tu layout XML
+        // Activa el parpadeo animado para las estrellas decorativas
         animateFadeStar(findViewById(R.id.star_1), 0);
         animateFadeStar(findViewById(R.id.star_2), 350);
         animateFadeStar(findViewById(R.id.star_3), 880);
@@ -157,9 +175,7 @@ public class QuizGroupActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    /**
-     * Animación fade in/fade out para estrellas decorativas en bucle.
-     */
+    // -- ANIMACIÓN DE ESTRELLAS --
     private void animateFadeStar(final ImageView star, int delay) {
         if (star == null) return;
         ObjectAnimator fadeIn = ObjectAnimator.ofFloat(star, "alpha", 0f, 1f);
@@ -179,5 +195,17 @@ public class QuizGroupActivity extends AppCompatActivity {
             }
         });
         set.start();
+    }
+
+    // -- FEEDBACK ESTÉTICO --
+    private void showFeedback(TextView questionView, String message, boolean isCorrect) {
+        int color = isCorrect ? 0xFF38C172 : 0xFFE53935; // Verde éxito o rojo error
+        Snackbar snackbar = Snackbar.make(questionView, message, Snackbar.LENGTH_SHORT);
+        View sbView = snackbar.getView();
+        sbView.setBackgroundColor(color);
+        TextView text = sbView.findViewById(com.google.android.material.R.id.snackbar_text);
+        text.setTextColor(0xFFFFFFFF);
+        text.setTextSize(18f);
+        snackbar.show();
     }
 }

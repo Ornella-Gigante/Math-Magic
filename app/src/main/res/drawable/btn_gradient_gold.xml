@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Estado presionado: azul fuerte a lila con dorado -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#3F51B5"
+                android:centerColor="#FFD700"
+                android:endColor="#9E8CBD"
+                android:angle="270" />
+            <corners android:radius="24dp" />
+            <stroke android:width="3dp" android:color="#FFD700" />
+        </shape>
+    </item>
+    <!-- Estado normal: azul claro a amarillo y lila claro -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#4A74D5"
+                android:centerColor="#FFD700"
+                android:endColor="#B39DDB"
+                android:angle="270" />
+            <corners android:radius="24dp" />
+            <stroke android:width="3dp" android:color="#FFD700" />
+        </shape>
+    </item>
+</selector>
