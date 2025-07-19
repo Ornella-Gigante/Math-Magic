@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // ---- Animación dinámica para estrellas ----
-        ImageView star1 = findViewById(R.id.moving_star1);
+        ImageView star1 = findViewById(R.id.star_glow);
         if (star1 != null) {
             ObjectAnimator animator1 = ObjectAnimator.ofFloat(star1, "translationY", 0f, 45f, 0f, -45f, 0f);
             animator1.setDuration(4000);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             animator1.start();
         }
 
-        ImageView star2 = findViewById(R.id.moving_star2);
+        ImageView star2 = findViewById(R.id.star_magic);
         if (star2 != null) {
             ObjectAnimator animator2 = ObjectAnimator.ofFloat(star2, "translationY", 0f, 35f, 0f, -35f, 0f);
             animator2.setDuration(3500);
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             animator2.start();
         }
 
-        ImageView star3 = findViewById(R.id.moving_star3);
+        ImageView star3 = findViewById(R.id.star_white);
         if (star3 != null) {
             ObjectAnimator animator3 = ObjectAnimator.ofFloat(star3, "translationX", 0f, 35f, 0f, -35f, 0f);
             animator3.setDuration(3800);
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             animator3.start();
         }
 
-        ImageView star4 = findViewById(R.id.moving_star4);
+        ImageView star4 = findViewById(R.id.star_rainbow);
         if (star4 != null) {
             ObjectAnimator animator4 = ObjectAnimator.ofFloat(star4, "translationX", 0f, 45f, 0f, -45f, 0f);
             animator4.setDuration(4200);
