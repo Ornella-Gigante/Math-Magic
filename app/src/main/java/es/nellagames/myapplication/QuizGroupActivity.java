@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import android.animation.ObjectAnimator;
+import android.animation.AnimatorSet;
+import android.view.animation.LinearInterpolator;
 
 public class QuizGroupActivity extends AppCompatActivity {
 
@@ -51,8 +55,6 @@ public class QuizGroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_group);
 
-        // --- Música de fondo para el juego/quizz ---
-        // Asegúrate de tener music_game.mp3 en res/raw/
         mediaPlayer = MediaPlayer.create(this, R.raw.music_ingame);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
@@ -78,9 +80,7 @@ public class QuizGroupActivity extends AppCompatActivity {
                     if (idx == correctAnswers[currentQuestionIndex]) {
                         magicPoints += 10;
                         prefs.edit().putInt("magic_points", magicPoints).apply();
-                        // Puedes poner feedback animado/toast aquí si lo deseas
                         if (magicPoints % 50 == 0) {
-                            // Detén la música cuando vas a milestones
                             if (mediaPlayer != null) {
                                 mediaPlayer.stop();
                                 mediaPlayer.release();
@@ -97,7 +97,6 @@ public class QuizGroupActivity extends AppCompatActivity {
                     if (currentQuestionIndex < questions.length) {
                         loadQuestion(questionView, optionButtons);
                     } else {
-                        // Ir a resultado final o reiniciar quiz
                         if (mediaPlayer != null) {
                             mediaPlayer.stop();
                             mediaPlayer.release();
@@ -112,6 +111,17 @@ public class QuizGroupActivity extends AppCompatActivity {
                 }
             });
         }
+
+        // Activa el parpadeo animado para las estrellas decorativas si están en tu layout XML
+        animateFadeStar(findViewById(R.id.star_1), 0);
+        animateFadeStar(findViewById(R.id.star_2), 350);
+        animateFadeStar(findViewById(R.id.star_3), 880);
+        animateFadeStar(findViewById(R.id.star_4), 1500);
+        animateFadeStar(findViewById(R.id.star_5), 2040);
+        animateFadeStar(findViewById(R.id.star_6), 860);
+        animateFadeStar(findViewById(R.id.star_7), 1120);
+        animateFadeStar(findViewById(R.id.star_8), 1710);
+        animateFadeStar(findViewById(R.id.star_9), 950);
     }
 
     private void loadQuestion(TextView questionView, Button[] optionButtons) {
@@ -145,5 +155,29 @@ public class QuizGroupActivity extends AppCompatActivity {
             mediaPlayer = null;
         }
         super.onDestroy();
+    }
+
+    /**
+     * Animación fade in/fade out para estrellas decorativas en bucle.
+     */
+    private void animateFadeStar(final ImageView star, int delay) {
+        if (star == null) return;
+        ObjectAnimator fadeIn = ObjectAnimator.ofFloat(star, "alpha", 0f, 1f);
+        fadeIn.setDuration(1200);
+
+        ObjectAnimator fadeOut = ObjectAnimator.ofFloat(star, "alpha", 1f, 0f);
+        fadeOut.setDuration(1200);
+
+        AnimatorSet set = new AnimatorSet();
+        set.playSequentially(fadeIn, fadeOut);
+        set.setInterpolator(new LinearInterpolator());
+        set.setStartDelay(delay);
+        set.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                set.start(); // Loop infinito
+            }
+        });
+        set.start();
     }
 }
