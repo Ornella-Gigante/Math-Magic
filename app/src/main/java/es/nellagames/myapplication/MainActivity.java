@@ -10,24 +10,43 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
+import android.animation.AnimatorSet;
 import android.view.animation.LinearInterpolator;
 
 public class MainActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
 
+    private void animateFadeStar(final ImageView star, int delay) {
+        if (star == null) return;
+        ObjectAnimator fadeIn = ObjectAnimator.ofFloat(star, "alpha", 0f, 1f);
+        fadeIn.setDuration(1200);
+
+        ObjectAnimator fadeOut = ObjectAnimator.ofFloat(star, "alpha", 1f, 0f);
+        fadeOut.setDuration(1200);
+
+        AnimatorSet set = new AnimatorSet();
+        set.playSequentially(fadeIn, fadeOut);
+        set.setInterpolator(new LinearInterpolator());
+        set.setStartDelay(delay);
+        set.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                set.start(); // loop infinito
+            }
+        });
+        set.start();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // ---- MÚSICA DE INICIO ----
         mediaPlayer = MediaPlayer.create(this, R.raw.music_intro);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
 
-        // Mostrar el mejor puntaje al iniciar la actividad
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
         int bestScore = prefs.getInt("best_score", 0);
         TextView bestScoreView = findViewById(R.id.text_best_score);
@@ -53,45 +72,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // ---- Animación dinámica para estrellas ----
-        ImageView star1 = findViewById(R.id.star_glow);
-        if (star1 != null) {
-            ObjectAnimator animator1 = ObjectAnimator.ofFloat(star1, "translationY", 0f, 45f, 0f, -45f, 0f);
-            animator1.setDuration(4000);
-            animator1.setInterpolator(new LinearInterpolator());
-            animator1.setRepeatCount(ValueAnimator.INFINITE);
-            animator1.start();
-        }
-
-        ImageView star2 = findViewById(R.id.star_magic);
-        if (star2 != null) {
-            ObjectAnimator animator2 = ObjectAnimator.ofFloat(star2, "translationY", 0f, 35f, 0f, -35f, 0f);
-            animator2.setDuration(3500);
-            animator2.setInterpolator(new LinearInterpolator());
-            animator2.setRepeatCount(ValueAnimator.INFINITE);
-            animator2.start();
-        }
-
-        ImageView star3 = findViewById(R.id.star_white);
-        if (star3 != null) {
-            ObjectAnimator animator3 = ObjectAnimator.ofFloat(star3, "translationX", 0f, 35f, 0f, -35f, 0f);
-            animator3.setDuration(3800);
-            animator3.setInterpolator(new LinearInterpolator());
-            animator3.setRepeatCount(ValueAnimator.INFINITE);
-            animator3.start();
-        }
-
-        ImageView star4 = findViewById(R.id.star_rainbow);
-        if (star4 != null) {
-            ObjectAnimator animator4 = ObjectAnimator.ofFloat(star4, "translationX", 0f, 45f, 0f, -45f, 0f);
-            animator4.setDuration(4200);
-            animator4.setInterpolator(new LinearInterpolator());
-            animator4.setRepeatCount(ValueAnimator.INFINITE);
-            animator4.start();
-        }
+        // Anima todas las estrellas (IDs deben coincidir con el XML)
+        animateFadeStar(findViewById(R.id.star_1), 0);
+        animateFadeStar(findViewById(R.id.star_2), 500);
+        animateFadeStar(findViewById(R.id.star_3), 1000);
+        animateFadeStar(findViewById(R.id.star_4), 1600);
+        animateFadeStar(findViewById(R.id.star_5), 2100);
+        animateFadeStar(findViewById(R.id.star_6), 1100);
+        animateFadeStar(findViewById(R.id.star_7), 800);
+        animateFadeStar(findViewById(R.id.star_8), 1450);
+        animateFadeStar(findViewById(R.id.star_9), 1250);
+        animateFadeStar(findViewById(R.id.star_10), 1850);
     }
 
-    // Muestra el best score actualizado cada vez que se vuelve al menú principal
     @Override
     protected void onResume() {
         super.onResume();

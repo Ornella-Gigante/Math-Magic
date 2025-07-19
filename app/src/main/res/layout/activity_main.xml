@@ -4,113 +4,53 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
 
-    <!-- Decorative stars: corners and sides -->
+    <!-- Superior e inferior (esquinas y centro) -->
+    <ImageView android:id="@+id/star_1" android:layout_width="26dp" android:layout_height="26dp"
+        android:src="@drawable/star_glow" android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp" android:alpha="0.0"/>
+    <ImageView android:id="@+id/star_2" android:layout_width="30dp" android:layout_height="30dp"
+        android:src="@drawable/star_white" android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" android:layout_marginTop="28dp" android:alpha="0.0"/>
+    <ImageView android:id="@+id/star_3" android:layout_width="28dp" android:layout_height="28dp"
+        android:src="@drawable/star_magic" android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" android:layout_marginEnd="20dp"
+        android:layout_marginTop="19dp" android:alpha="0.0"/>
+    <ImageView android:id="@+id/star_4" android:layout_width="24dp" android:layout_height="24dp"
+        android:src="@drawable/star_rainbow" android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" android:layout_marginStart="25dp"
+        android:layout_marginBottom="30dp" android:alpha="0.0"/>
+    <ImageView android:id="@+id/star_5" android:layout_width="26dp" android:layout_height="26dp"
+        android:src="@drawable/star_glow" android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp" android:alpha="0.0"/>
+    <ImageView android:id="@+id/star_6" android:layout_width="32dp" android:layout_height="32dp"
+        android:src="@drawable/star_white" android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" android:layout_marginBottom="36dp" android:alpha="0.0"/>
 
+    <!-- Estrellas en el medio -->
+    <ImageView android:id="@+id/star_7" android:layout_width="24dp" android:layout_height="24dp"
+        android:src="@drawable/star_magic" android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" android:alpha="0.0"/>
+    <ImageView android:id="@+id/star_8" android:layout_width="22dp" android:layout_height="22dp"
+        android:src="@drawable/star_rainbow" android:layout_centerVertical="true"
+        android:layout_marginStart="58dp" android:layout_marginTop="104dp"
+        android:layout_alignParentStart="true" android:alpha="0.0"/>
+    <ImageView android:id="@+id/star_9" android:layout_width="28dp" android:layout_height="28dp"
+        android:src="@drawable/star_glow" android:layout_centerVertical="true"
+        android:layout_marginEnd="58dp" android:layout_marginTop="104dp"
+        android:layout_alignParentEnd="true" android:alpha="0.0"/>
+    <ImageView android:id="@+id/star_10" android:layout_width="24dp" android:layout_height="24dp"
+        android:src="@drawable/star_white" android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp" android:layout_alignParentTop="true" android:alpha="0.0"/>
 
-    <TextView
-        android:id="@+id/text_best_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Best Score: 0"
-        android:textSize="18sp"
-        android:textColor="#FFD600"
-        android:layout_below="@id/text_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
-
-    <!-- Moving stars (animated in code) -->
-    <ImageView
-        android:id="@+id/star_glow"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/star_glow"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="64dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:alpha="0.8"/>
-
-    <ImageView
-        android:id="@+id/star_magic"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/star_magic"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="100dp"
-        android:alpha="0.7"/>
-
-    <ImageView
-        android:id="@+id/star_white"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:src="@drawable/star_white"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="72dp"
-        android:alpha="0.8"/>
-
-    <ImageView
-        android:id="@+id/star_rainbow"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/star_rainbow"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="100dp"
-        android:alpha="0.7"/>
-
-    <!-- Static corner stars for extra sparkle -->
-    <ImageView
-        android:id="@+id/star_top_left"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="13dp"
-        android:alpha="0.5"/>
-
-    <ImageView
-        android:id="@+id/star_top_right"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="18dp"
-        android:alpha="0.45"/>
-
-    <ImageView
-        android:id="@+id/star_bottom_left"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="20dp"
-        android:alpha="0.45"/>
-
-    <ImageView
-        android:id="@+id/star_bottom_right"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="15dp"
-        android:alpha="0.6"/>
-
-    <!-- Improved Title -->
+    <!-- Título -->
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Math Magic"
-        android:textSize="36sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="#FFEC89"
         android:layout_centerHorizontal="true"
@@ -124,59 +64,66 @@
         android:padding="8dp"
         android:importantForAccessibility="yes"
         android:contentDescription="Math Magic App"/>
-    <!-- Start Game Button -->
 
-    <!-- Magic Shop Button -->
-
-    <!-- Celebration Image Centered Below Buttons -->
-
-    <Button
-        android:id="@+id/button_start"
-        android:layout_width="220dp"
+    <TextView
+        android:id="@+id/text_best_score"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Best Score: 0"
+        android:textSize="18sp"
+        android:textColor="#FFD600"
         android:layout_below="@id/text_title"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="127dp"
-        android:layout_marginEnd="100dp"
-        android:backgroundTint="#9575CD"
-        android:elevation="4dp"
-        android:text="Start Game"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
 
-    <Button
-        android:id="@+id/button_shop"
-        android:layout_width="220dp"
+    <!-- Botones -->
+
+    <!-- Botones abajo y centrados -->
+    <LinearLayout
+        android:id="@+id/buttons_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_start"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="103dp"
-        android:backgroundTint="#7C4DFF"
-        android:elevation="4dp"
-        android:text="Magic Shop"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="false"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/text_best_score"
+        android:layout_marginTop="100dp">
+
+        <Button
+            android:id="@+id/button_start"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="22dp"
+            android:backgroundTint="#9575CD"
+            android:elevation="4dp"
+            android:text="Start Game"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_shop"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#7C4DFF"
+            android:elevation="4dp"
+            android:text="Magic Shop"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/celebration_image"
-        android:layout_width="278dp"
-        android:layout_height="222dp"
-        android:layout_below="@id/button_shop"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+        android:layout_width="255dp"
+        android:layout_height="296dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="107dp"
-        android:layout_marginEnd="71dp"
-        android:layout_marginBottom="-22dp"
-        android:contentDescription="Celebration image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/avatar_rounded_bg"
+        android:contentDescription="Celebration Image"
+        android:scaleType="centerCrop"
         android:src="@drawable/welcome" />
-
 </RelativeLayout>
