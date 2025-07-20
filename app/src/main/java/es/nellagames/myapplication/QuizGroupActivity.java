@@ -75,7 +75,6 @@ public class QuizGroupActivity extends AppCompatActivity {
                 findViewById(R.id.radio_button4)
         };
 
-        // ✅ CORRECCIÓN: Cargar la primera pregunta al iniciar
         loadQuestion(questionView, radioButtons, radioGroup);
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -90,13 +89,26 @@ public class QuizGroupActivity extends AppCompatActivity {
                 rb.setEnabled(false);
             }
 
-            String correctText = radioButtons[correctIndex].getText().toString();
-
             if (selectedIdx == correctIndex) {
                 radioButtons[selectedIdx].setBackgroundResource(R.drawable.btn_correct);
                 radioButtons[selectedIdx].setText("That's correct!");
-                magicPoints += 50;
+                magicPoints += 15;
                 prefs.edit().putInt("magic_points", magicPoints).apply();
+
+                // 🔔 Mostrar milestone si corresponde
+                int[] milestones = {50,60,70};
+                int lastMilestone = prefs.getInt("last_milestone", 0);
+                for (int milestone : milestones) {
+                    if (magicPoints >= milestone && lastMilestone < milestone) {
+                        prefs.edit().putInt("last_milestone", milestone).apply();
+                        Intent milestoneIntent = new Intent(QuizGroupActivity.this, MilestoneActivity.class);
+                        milestoneIntent.putExtra("milestone", milestone);
+                        startActivity(milestoneIntent);
+                        finish(); // Evita que se siga ejecutando esta actividad
+                        return;
+                    }
+                }
+
             } else if (selectedIdx != -1) {
                 radioButtons[selectedIdx].setBackgroundResource(R.drawable.btn_incorrect);
                 radioButtons[selectedIdx].setText("Ups! That's wrong!");
