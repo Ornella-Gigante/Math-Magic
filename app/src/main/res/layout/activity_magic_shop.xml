@@ -5,7 +5,7 @@
     android:background="@drawable/gradient_purple"
     android:padding="16dp">
 
-    <!-- Estrellas decorativas -->
+    <!-- Decorative Stars -->
     <ImageView
         android:id="@+id/star_top_left"
         android:layout_width="32dp"
@@ -50,7 +50,7 @@
         android:layout_marginBottom="16dp"
         android:alpha="0.8" />
 
-    <!-- Scroll principal -->
+    <!-- Main Scroll Area for Avatars -->
     <ScrollView
         android:id="@+id/shop_scroll"
         android:layout_width="match_parent"
@@ -102,14 +102,20 @@
                     android:background="@drawable/avatar_circle"
                     android:scaleType="centerCrop"
                     android:clipToOutline="true"
-                    android:contentDescription="Avatar 1" />
+                    android:contentDescription="Avatar 1"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <Button
                     android:id="@+id/button_unlock_avatar1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unlock (100 pts)"
-                    android:layout_marginStart="16dp" />
+                    android:background="@drawable/btn_unlock_faded"
+                    android:textColor="#EEEEEE"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="16dp"/>
             </LinearLayout>
 
             <!-- Avatar 2 -->
@@ -130,14 +136,20 @@
                     android:background="@drawable/avatar_circle"
                     android:scaleType="centerCrop"
                     android:clipToOutline="true"
-                    android:contentDescription="Avatar 2" />
+                    android:contentDescription="Avatar 2"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <Button
                     android:id="@+id/button_unlock_avatar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unlock (100 pts)"
-                    android:layout_marginStart="16dp" />
+                    android:background="@drawable/btn_unlock_faded"
+                    android:textColor="#EEEEEE"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="16dp"/>
             </LinearLayout>
 
             <!-- Avatar 3 -->
@@ -158,14 +170,20 @@
                     android:background="@drawable/avatar_circle"
                     android:scaleType="centerCrop"
                     android:clipToOutline="true"
-                    android:contentDescription="Avatar 3" />
+                    android:contentDescription="Avatar 3"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <Button
                     android:id="@+id/button_unlock_avatar3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unlock (100 pts)"
-                    android:layout_marginStart="16dp" />
+                    android:background="@drawable/btn_unlock_faded"
+                    android:textColor="#EEEEEE"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="16dp"/>
             </LinearLayout>
 
             <!-- Avatar 4 -->
@@ -186,14 +204,20 @@
                     android:background="@drawable/avatar_circle"
                     android:scaleType="centerCrop"
                     android:clipToOutline="true"
-                    android:contentDescription="Avatar 4" />
+                    android:contentDescription="Avatar 4"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <Button
                     android:id="@+id/button_unlock_avatar4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unlock (100 pts)"
-                    android:layout_marginStart="16dp" />
+                    android:background="@drawable/btn_unlock_faded"
+                    android:textColor="#EEEEEE"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="16dp"/>
             </LinearLayout>
 
             <!-- Avatar 5 -->
@@ -214,20 +238,26 @@
                     android:background="@drawable/avatar_circle"
                     android:scaleType="centerCrop"
                     android:clipToOutline="true"
-                    android:contentDescription="Avatar 5" />
+                    android:contentDescription="Avatar 5"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <Button
                     android:id="@+id/button_unlock_avatar5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Unlock (50 pts)"
-                    android:layout_marginStart="16dp" />
+                    android:background="@drawable/btn_unlock_faded"
+                    android:textColor="#EEEEEE"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="16dp"/>
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Botón menú -->
+    <!-- Main Menu Button -->
     <Button
         android:id="@+id/button_main_menu"
         android:layout_width="200dp"
@@ -240,4 +270,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="18dp" />
+
 </RelativeLayout>

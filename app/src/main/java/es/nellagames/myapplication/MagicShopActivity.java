@@ -118,12 +118,15 @@ public class MagicShopActivity extends AppCompatActivity {
         pointsView.setText("Magic Points: " + magicPoints);
         if (avatar1Unlocked) {
             unlockAvatar1.setEnabled(false);
+            unlockAvatar1.setAlpha(1.0f); // Botón normal cuando está desbloqueado
             unlockAvatar1.setText("Unlocked!");
             avatar1.setAlpha(1.0f);
         } else {
             unlockAvatar1.setEnabled(true);
+            unlockAvatar1.setAlpha(0.6f); // Botón visible pero un poquito apagado
             unlockAvatar1.setText("Unlock (100 pts)");
             avatar1.setAlpha(0.5f);
         }
     }
+
 }
