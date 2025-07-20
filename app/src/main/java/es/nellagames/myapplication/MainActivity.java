@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
 import android.animation.AnimatorSet;
 import android.view.animation.LinearInterpolator;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,6 +73,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // --- NUEVO: Botón de reset ---
+        Button resetButton = findViewById(R.id.button_reset);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetGameProgress();
+                Toast.makeText(MainActivity.this, "Game progress reset!", Toast.LENGTH_SHORT).show();
+                // Reinicia la activity para reflejar el reset al instante
+                recreate();
+            }
+        });
+
+
         // Anima todas las estrellas (IDs deben coincidir con el XML)
         animateFadeStar(findViewById(R.id.star_1), 0);
         animateFadeStar(findViewById(R.id.star_2), 500);
@@ -83,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         animateFadeStar(findViewById(R.id.star_8), 1450);
         animateFadeStar(findViewById(R.id.star_9), 1250);
         animateFadeStar(findViewById(R.id.star_10), 1850);
+    }
+
+    private void resetGameProgress() {
+        SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+        prefs.edit().clear().apply();
     }
 
     @Override
