@@ -27,10 +27,9 @@ public class MilestoneActivity extends AppCompatActivity {
         ImageView avatarCelebrating = findViewById(R.id.avatar_celebrating);
         TextView milestoneMessage = findViewById(R.id.milestone_message);
 
-        // NUEVOS UMBRALES DE LOGRO MÁS ACCESIBLES
         if (milestone >= 50) {
             milestoneMessage.setText("Legendary! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.delfin); // Ajusta drawable según milestone alto
+            avatarCelebrating.setImageResource(R.drawable.delfin);
         } else if (milestone >= 30) {
             milestoneMessage.setText("Amazing! You reached " + milestone + " magic points!");
             avatarCelebrating.setImageResource(R.drawable.boy);
@@ -46,11 +45,7 @@ public class MilestoneActivity extends AppCompatActivity {
         magicShopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mediaPlayer != null) {
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-                    mediaPlayer = null;
-                }
+                stopMusic();
                 Intent intent = new Intent(MilestoneActivity.this, MagicShopActivity.class);
                 startActivity(intent);
                 finish();
@@ -61,11 +56,7 @@ public class MilestoneActivity extends AppCompatActivity {
         mainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mediaPlayer != null) {
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-                    mediaPlayer = null;
-                }
+                stopMusic();
                 Intent intent = new Intent(MilestoneActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -73,12 +64,17 @@ public class MilestoneActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
+    private void stopMusic() {
         if (mediaPlayer != null) {
+            mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        stopMusic();
         super.onDestroy();
     }
 }

@@ -1,3 +1,4 @@
+// ChallengeActivity.java
 package es.nellagames.myapplication;
 
 import android.content.Intent;
@@ -33,17 +34,29 @@ public class ChallengeActivity extends AppCompatActivity {
         View.OnClickListener answerClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button clickedButton = (Button) v;
-                int selectedAnswer = Integer.parseInt(clickedButton.getText().toString());
-                if (selectedAnswer == correctAnswer) {
+                Button clicked = (Button) v;
+                int selected = Integer.parseInt(clicked.getText().toString());
+                boolean correct = (selected == correctAnswer);
+                if (correct) {
                     score++;
-
-                    // Sumar puntos mágicos por respuesta correcta
-                    int puntosGanados = 10; // Puedes ajustar la cantidad
+                    int pointsEarned = 10;
                     SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
                     int magicPoints = prefs.getInt("magic_points", 0);
-                    magicPoints += puntosGanados;
+                    magicPoints += pointsEarned;
                     prefs.edit().putInt("magic_points", magicPoints).apply();
+
+                    // Lanzar milestone si corresponde
+                    int[] milestones = {10, 20, 25, 30, 50};
+                    int lastMilestone = prefs.getInt("last_milestone", 0);
+                    for (int milestone : milestones) {
+                        if (magicPoints >= milestone && lastMilestone < milestone) {
+                            prefs.edit().putInt("last_milestone", milestone).apply();
+                            Intent milestoneIntent = new Intent(ChallengeActivity.this, MilestoneActivity.class);
+                            milestoneIntent.putExtra("milestone", milestone);
+                            startActivity(milestoneIntent);
+                            break;
+                        }
+                    }
                 }
                 questionCount++;
                 if (questionCount < totalQuestions) {
@@ -65,17 +78,15 @@ public class ChallengeActivity extends AppCompatActivity {
     }
 
     private void loadNewQuestion() {
-        // Simple addition questions for demo
         int a = (int) (Math.random() * 10) + 1;
         int b = (int) (Math.random() * 10) + 1;
         correctAnswer = a + b;
         questionTextView.setText("What is " + a + " + " + b + "?");
 
-        // Set options including correct answer and random numbers
-        int correctPosition = (int) (Math.random() * 4);
+        int correctPos = (int) (Math.random() * 4);
         int[] options = new int[4];
         for (int i = 0; i < 4; i++) {
-            if (i == correctPosition) {
+            if (i == correctPos) {
                 options[i] = correctAnswer;
             } else {
                 options[i] = (int) (Math.random() * 20) + 1;

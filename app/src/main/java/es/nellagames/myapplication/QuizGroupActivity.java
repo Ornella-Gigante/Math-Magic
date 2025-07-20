@@ -95,7 +95,7 @@ public class QuizGroupActivity extends AppCompatActivity {
             if (selectedIdx == correctIndex) {
                 radioButtons[selectedIdx].setBackgroundResource(R.drawable.btn_correct);
                 radioButtons[selectedIdx].setText("That's correct!");
-                magicPoints += 25;
+                magicPoints += 50;
                 prefs.edit().putInt("magic_points", magicPoints).apply();
             } else if (selectedIdx != -1) {
                 radioButtons[selectedIdx].setBackgroundResource(R.drawable.btn_incorrect);
