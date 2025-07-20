@@ -49,7 +49,7 @@ public class QuizGroupActivity extends AppCompatActivity {
             {"2", "3", "4", "5"}
     };
 
-    private int[] correctAnswers = {2, 2, 1, 0, 2, 2, 0, 3, 1, 2};
+    private int[] correctAnswers = {2, 2, 2, 0, 2, 2, 2, 3, 1, 2};
 
     private String[] lastOptionTexts = new String[4];
 
