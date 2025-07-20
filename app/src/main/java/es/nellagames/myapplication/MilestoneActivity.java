@@ -18,10 +18,8 @@ public class MilestoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_milestone);
 
-        // Música para celebraciones (achievement)
-        // Pon un archivo llamado music_achievement.mp3 en res/raw/
         mediaPlayer = MediaPlayer.create(this, R.raw.music_achievement);
-        mediaPlayer.setLooping(false); // Sonará una vez
+        mediaPlayer.setLooping(false);
         mediaPlayer.start();
 
         int milestone = getIntent().getIntExtra("milestone", 0);
@@ -29,16 +27,16 @@ public class MilestoneActivity extends AppCompatActivity {
         ImageView avatarCelebrating = findViewById(R.id.avatar_celebrating);
         TextView milestoneMessage = findViewById(R.id.milestone_message);
 
-        // Cambiar mensaje e imagen según milestone
-        if (milestone >= 200) {
+        // NUEVOS UMBRALES DE LOGRO MÁS ACCESIBLES
+        if (milestone >= 50) {
             milestoneMessage.setText("Legendary! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.delfin); // Prepara esta imagen en tus drawables
-        } else if (milestone >= 100) {
+            avatarCelebrating.setImageResource(R.drawable.delfin); // Ajusta drawable según milestone alto
+        } else if (milestone >= 30) {
             milestoneMessage.setText("Amazing! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.boy);    // Prepara esta imagen en tus drawables
-        } else if (milestone >= 50) {
+            avatarCelebrating.setImageResource(R.drawable.boy);
+        } else if (milestone >= 10) {
             milestoneMessage.setText("Great! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.wizard);  // Usa tu imagen de celebración básica
+            avatarCelebrating.setImageResource(R.drawable.wizard);
         } else {
             milestoneMessage.setText("Congratulations! You reached a new milestone!");
             avatarCelebrating.setImageResource(R.drawable.celebrate);
