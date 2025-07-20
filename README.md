@@ -6,6 +6,13 @@ Welcome to **Math Magic**, a fun and simple educational game for kids! Help your
 
 **Math Magic** is an Android game where you play as a young wizard apprentice. To cast spells and progress through magical rooms, you must solve math problems. Each correct answer brings you closer to becoming a true Math Wizard!
 
+
+<div align="center">
+  <img src="https://github.com/Ornella-Gigante/Math-Magic/blob/main/game_teaser.png" width="300" alt="Gameplay Screenshot" style="display:inline-block; margin-right: 18px;"/>
+  <img src="https://github.com/Ornella-Gigante/Math-Magic/blob/main/teaser_2.png" width="300" alt="Start Screen Screenshot" style="display:inline-block; margin-left: 18px;"/>
+</div>
+
+
 ## 🎮 Game Structure
 
 ### Main Screens
