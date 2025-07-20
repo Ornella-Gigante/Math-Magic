@@ -23,7 +23,6 @@ public class ResultsActivity extends AppCompatActivity {
         TextView resultText = findViewById(R.id.text_result);
         resultText.setText("You scored " + score + " out of " + total + "!");
 
-        // Update the best score if necessary
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
         int bestScore = prefs.getInt("best_score", 0);
         if (score > bestScore) {
@@ -31,8 +30,12 @@ public class ResultsActivity extends AppCompatActivity {
             bestScore = score;
         }
 
-        // Music for the results screen
-        mediaPlayer = MediaPlayer.create(this, R.raw.music_achievement); // place music_achievement.mp3 in res/raw
+        TextView bestScoreView = findViewById(R.id.text_best_score);
+        if (bestScoreView != null) {
+            bestScoreView.setText("Best Score: " + bestScore);
+        }
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.music_achievement);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
 
@@ -40,10 +43,7 @@ public class ResultsActivity extends AppCompatActivity {
         playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mediaPlayer != null) {
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-                }
+                releaseMusic();
                 Intent intent = new Intent(ResultsActivity.this, QuizGroupActivity.class);
                 startActivity(intent);
                 finish();
@@ -54,10 +54,7 @@ public class ResultsActivity extends AppCompatActivity {
         mainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mediaPlayer != null) {
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-                }
+                releaseMusic();
                 Intent intent = new Intent(ResultsActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -65,28 +62,55 @@ public class ResultsActivity extends AppCompatActivity {
         });
     }
 
+    private void releaseMusic() {
+        if (mediaPlayer != null) {
+            try {
+                if (mediaPlayer.isPlaying()) { // Solo pausa si no está liberado aún
+                    mediaPlayer.stop();
+                }
+            } catch (IllegalStateException e) {
+                // MediaPlayer ya liberado, ignora
+            }
+            try {
+                mediaPlayer.release();
+            } catch (IllegalStateException e) {
+                // Ya liberado
+            }
+            mediaPlayer = null;
+        }
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.pause();
+        if (mediaPlayer != null) {
+            try {
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.pause();
+                }
+            } catch (IllegalStateException e) {
+                // Ya liberado, ignora
+            }
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
-            mediaPlayer.start();
+        if (mediaPlayer != null) {
+            try {
+                if (!mediaPlayer.isPlaying()) {
+                    mediaPlayer.start();
+                }
+            } catch (IllegalStateException e) {
+                // Ya liberado
+            }
         }
     }
 
     @Override
     protected void onDestroy() {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-        }
+        releaseMusic();
         super.onDestroy();
     }
 }
