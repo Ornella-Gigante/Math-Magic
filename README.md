@@ -8,8 +8,8 @@ Welcome to **Math Magic**, a fun and simple educational game for kids! Help your
 
 
 <div align="center">
-  <img src="https://github.com/Ornella-Gigante/Math-Magic/blob/main/game_teaser.png" width="300" alt="Gameplay Screenshot" style="display:inline-block; margin-right: 18px;"/>
-  <img src="https://github.com/Ornella-Gigante/Math-Magic/blob/main/teaser_2.png" width="300" alt="Start Screen Screenshot" style="display:inline-block; margin-left: 18px;"/>
+  <img src="https://github.com/Ornella-Gigante/Math-Magic/blob/main/game_teaser.png" width="350" alt="Gameplay Screenshot" style="display:inline-block; margin-right: 18px;"/>
+  <img src="https://github.com/Ornella-Gigante/Math-Magic/blob/main/teaser_2.png" width="350" alt="Start Screen Screenshot" style="display:inline-block; margin-left: 18px;"/>
 </div>
 
 
