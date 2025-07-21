@@ -92,7 +92,7 @@ public class QuizGroupActivity extends AppCompatActivity {
             if (selectedIdx == correctIndex) {
                 radioButtons[selectedIdx].setBackgroundResource(R.drawable.btn_correct);
                 radioButtons[selectedIdx].setText("That's correct!");
-                magicPoints += 15;
+                magicPoints += 10;
                 prefs.edit().putInt("magic_points", magicPoints).apply();
 
                 // 🔔 Mostrar milestone si corresponde
