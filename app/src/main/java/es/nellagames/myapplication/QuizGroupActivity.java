@@ -23,20 +23,62 @@ public class QuizGroupActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     boolean preguntaRespondida;
 
+    // 15 carefully checked questions
     private String[] questions = {
-            // ... your 15 questions ...
+            "What is 3 + 5?",
+            "Emily has 3 apples and buys 4 more. How many apples does she have?",
+            "What is 12 - 7?",
+            "Liam has 10 candies and shares with 4 friends. How many candies per child?",
+            "What is 4 × 2?",
+            "There are 12 cookies. Mia eats 5. How many left?",
+            "What is 20 ÷ 5?",
+            "A farmer has 6 baskets with 8 oranges each. How many oranges?",
+            "Which is largest number: 9, 13, 7, 11?",
+            "Fill in the blank: 5 + __ = 9",
+            "What is 15 + 6?",
+            "Sara had 20 pencils and gave 5 to John. How many pencils left?",
+            "What is 9 × 3?",
+            "There are 5 boxes with 12 candies each. How many candies total?",
+            "Fill in the blank: 18 - __ = 10"
     };
 
     private String[][] options = {
-            // ... your 15 sets of options ...
+            {"6", "7", "8", "9"},
+            {"5", "6", "7", "8"},
+            {"3", "4", "5", "6"},
+            {"2", "3", "5", "10"},
+            {"6", "7", "8", "9"},
+            {"5", "6", "7", "8"},
+            {"2", "3", "4", "5"},
+            {"14", "24", "36", "48"},
+            {"9", "13", "7", "11"},
+            {"2", "3", "4", "5"},
+            {"20", "21", "22", "23"},
+            {"10", "15", "20", "25"},
+            {"27", "26", "24", "29"},
+            {"60", "55", "56", "50"},
+            {"7", "8", "6", "5"}
     };
 
     private int[] correctAnswers = {
-            // ... your 15 correct answer indices ...
+            2, // "8" for 3 + 5
+            2, // "7" for 3 + 4 apples
+            2, // "5" for 12 - 7
+            0, // "2" for 10 candies / 5 kids
+            2, // "8" for 4 x 2
+            2, // "7" for 12 - 5
+            2, // "4" for 20 / 5
+            3, // "48" for 6 x 8
+            1, // "13" largest
+            2, // "4" for 5+__=9
+            2, // "22" for 15+6
+            1, // "15" for 20-5
+            0, // "27" for 9x3
+            0, // "60" for 5*12
+            1 // "8" for 18-__=10
     };
 
     private String[] lastOptionTexts = new String[4];
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -16,11 +16,13 @@ public class PrepareMagicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prepare_magic);
 
-
         ImageView wizardAvatar = findViewById(R.id.wizard_avatar);
         TextView loadingText = findViewById(R.id.text_loading);
 
         new Handler().postDelayed(() -> {
+            // Detener la música global justo antes de ir al quiz
+            stopService(new Intent(PrepareMagicActivity.this, MusicService.class));
+
             Intent intent = new Intent(PrepareMagicActivity.this, QuizGroupActivity.class);
             startActivity(intent);
             finish();
