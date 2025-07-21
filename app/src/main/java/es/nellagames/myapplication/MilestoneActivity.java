@@ -63,13 +63,16 @@ public class MilestoneActivity extends AppCompatActivity {
             }
         });
 
-        // NUEVO: Botón Continue para volver al quiz
+        // NUEVO: Botón Continue para seguir con las preguntas
         Button continueButton = findViewById(R.id.button_continue);
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 stopMusic();
-                finish(); // Cierra la pantalla y vuelve a la pregunta
+                Intent intent = new Intent(MilestoneActivity.this, QuizGroupActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
             }
         });
     }
