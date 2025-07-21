@@ -33,10 +33,10 @@ public class MilestoneActivity extends AppCompatActivity {
         ImageView avatarCelebrating = findViewById(R.id.avatar_celebrating);
         TextView milestoneMessage = findViewById(R.id.milestone_message);
 
-        if (milestone >= 70) {
+        if (milestone >= 80) {
             milestoneMessage.setText("Great! You reached " + milestone + " magic points!");
             avatarCelebrating.setImageResource(R.drawable.wizard);
-        } else if (milestone >= 60) {
+        } else if (milestone >= 30) {
             milestoneMessage.setText("Legendary! You reached " + milestone + " magic points!");
             avatarCelebrating.setImageResource(R.drawable.delfin);
         } else if (milestone >= 50) {
