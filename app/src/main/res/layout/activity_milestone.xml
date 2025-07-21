@@ -85,7 +85,7 @@
             android:textColor="#FFFFFF"
             android:backgroundTint="#7C4DFF"
             android:elevation="3dp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/button_main_menu"
@@ -95,6 +95,20 @@
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:backgroundTint="#6D4C41"
-            android:elevation="3dp"/>
+            android:elevation="3dp"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- NUEVO botón Continue -->
+        <Button
+            android:id="@+id/button_continue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#43EA7F"
+            android:elevation="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
     </LinearLayout>
 </RelativeLayout>

@@ -27,15 +27,15 @@ public class MilestoneActivity extends AppCompatActivity {
         ImageView avatarCelebrating = findViewById(R.id.avatar_celebrating);
         TextView milestoneMessage = findViewById(R.id.milestone_message);
 
-        if (milestone >= 60) {
+        if (milestone >= 70) {
+            milestoneMessage.setText("Great! You reached " + milestone + " magic points!");
+            avatarCelebrating.setImageResource(R.drawable.wizard);
+        } else if (milestone >= 60) {
             milestoneMessage.setText("Legendary! You reached " + milestone + " magic points!");
             avatarCelebrating.setImageResource(R.drawable.delfin);
         } else if (milestone >= 50) {
             milestoneMessage.setText("Amazing! You reached " + milestone + " magic points!");
             avatarCelebrating.setImageResource(R.drawable.boy);
-        } else if (milestone >= 70) {
-            milestoneMessage.setText("Great! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.wizard);
         } else {
             milestoneMessage.setText("Congratulations! You reached a new milestone!");
             avatarCelebrating.setImageResource(R.drawable.celebrate);
@@ -60,6 +60,16 @@ public class MilestoneActivity extends AppCompatActivity {
                 Intent intent = new Intent(MilestoneActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        // NUEVO: Botón Continue para volver al quiz
+        Button continueButton = findViewById(R.id.button_continue);
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopMusic();
+                finish(); // Cierra la pantalla y vuelve a la pregunta
             }
         });
     }
