@@ -28,7 +28,7 @@ public class QuizGroupActivity extends AppCompatActivity {
             "What is 3 + 5?",
             "Emily has 3 apples and buys 4 more. How many apples does she have?",
             "What is 12 - 7?",
-            "Liam has 10 candies and shares with 4 friends. How many candies per child?",
+            "Liam has 8 candies and shares with 4 friends. How many candies per child?",
             "What is 4 × 2?",
             "There are 12 cookies. Mia eats 5. How many left?",
             "What is 20 ÷ 5?",
@@ -71,7 +71,7 @@ public class QuizGroupActivity extends AppCompatActivity {
             3, // "48" for 6 x 8
             1, // "13" largest
             2, // "4" for 5+__=9
-            2, // "22" for 15+6
+            2, // "21" for 15+6
             1, // "15" for 20-5
             0, // "27" for 9x3
             0, // "60" for 5*12
