@@ -44,70 +44,63 @@ public class MilestoneActivity extends AppCompatActivity {
         }
 
         Button magicShopButton = findViewById(R.id.button_magic_shop);
-        magicShopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopMusic();
-                Intent intent = new Intent(MilestoneActivity.this, MagicShopActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        magicShopButton.setOnClickListener(v -> {
+            stopMusic();
+            Intent intent = new Intent(MilestoneActivity.this, MagicShopActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         Button mainMenuButton = findViewById(R.id.button_main_menu);
-        mainMenuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopMusic();
-                Intent intent = new Intent(MilestoneActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        mainMenuButton.setOnClickListener(v -> {
+            stopMusic();
+            Intent intent = new Intent(MilestoneActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        // NUEVO: Botón Continue para seguir con las preguntas
         Button continueButton = findViewById(R.id.button_continue);
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopMusic();
-                Intent intent = new Intent(MilestoneActivity.this, QuizGroupActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                finish();
-            }
+        continueButton.setOnClickListener(v -> {
+            stopMusic();
+            Intent intent = new Intent(MilestoneActivity.this, QuizGroupActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
         });
+
+        // Animación: Llama a la función para cada estrella
+        animateFadeStar(findViewById(R.id.star_1), 0);
+        animateFadeStar(findViewById(R.id.star_2), 350);
+        animateFadeStar(findViewById(R.id.star_3), 650);
+        animateFadeStar(findViewById(R.id.star_4), 900);
+        animateFadeStar(findViewById(R.id.star_5), 1150);
+        animateFadeStar(findViewById(R.id.star_6), 1400);
+        animateFadeStar(findViewById(R.id.star_7), 410);
+        animateFadeStar(findViewById(R.id.star_8), 950);
+        animateFadeStar(findViewById(R.id.star_9), 1110);
+        animateFadeStar(findViewById(R.id.star_10), 550);
     }
 
-    private void animateBalloons() {
-        ImageView balloonLeft = findViewById(R.id.balloon_left);
-        ImageView balloonRight = findViewById(R.id.balloon_right);
+    private void animateFadeStar(final ImageView star, int delay) {
+        if (star == null) return;
+        ObjectAnimator fadeIn = ObjectAnimator.ofFloat(star, "alpha", 0f, 1f);
+        fadeIn.setDuration(1100);
 
-        ObjectAnimator leftRise = ObjectAnimator.ofFloat(balloonLeft, "translationY", 0f, -40f, 0f);
-        leftRise.setDuration(3000);
-        leftRise.setRepeatCount(ObjectAnimator.INFINITE);
-        leftRise.setRepeatMode(ObjectAnimator.REVERSE);
-
-        ObjectAnimator leftFloat = ObjectAnimator.ofFloat(balloonLeft, "translationX", 0f, 15f, 0f);
-        leftFloat.setDuration(4500);
-        leftFloat.setRepeatCount(ObjectAnimator.INFINITE);
-        leftFloat.setRepeatMode(ObjectAnimator.REVERSE);
-
-        ObjectAnimator rightRise = ObjectAnimator.ofFloat(balloonRight, "translationY", 0f, -45f, 0f);
-        rightRise.setDuration(3200);
-        rightRise.setRepeatCount(ObjectAnimator.INFINITE);
-        rightRise.setRepeatMode(ObjectAnimator.REVERSE);
-
-        ObjectAnimator rightFloat = ObjectAnimator.ofFloat(balloonRight, "translationX", 0f, -15f, 0f);
-        rightFloat.setDuration(4800);
-        rightFloat.setRepeatCount(ObjectAnimator.INFINITE);
-        rightFloat.setRepeatMode(ObjectAnimator.REVERSE);
+        ObjectAnimator fadeOut = ObjectAnimator.ofFloat(star, "alpha", 1f, 0f);
+        fadeOut.setDuration(1200);
 
         AnimatorSet set = new AnimatorSet();
-        set.playTogether(leftRise, leftFloat, rightRise, rightFloat);
+        set.playSequentially(fadeIn, fadeOut);
+        set.setInterpolator(new android.view.animation.LinearInterpolator());
+        set.setStartDelay(delay);
+        set.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                set.start();
+            }
+        });
         set.start();
     }
-
 
     private void stopMusic() {
         if (mediaPlayer != null) {

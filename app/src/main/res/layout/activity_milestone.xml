@@ -1,75 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_purple"
     android:padding="24dp">
 
-    <!-- Balloons instead of stars -->
-    <ImageView
-        android:id="@+id/balloon_left"
-        android:layout_width="48dp"
-        android:layout_height="72dp"
-        android:src="@drawable/balloon_red"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:contentDescription="Red balloon" />
+    <!-- Many stars, in corners and center, all invisible by default (animated to fade in/out) -->
+    <ImageView android:id="@+id/star_1" android:layout_width="26dp" android:layout_height="26dp"
+        android:src="@drawable/star_glow" android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp" android:alpha="0.0" />
 
-    <ImageView
-        android:id="@+id/balloon_right"
-        android:layout_width="48dp"
-        android:layout_height="72dp"
-        android:src="@drawable/balloon_blue"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="60dp"
-        android:contentDescription="Blue balloon" />
+    <ImageView android:id="@+id/star_2" android:layout_width="30dp" android:layout_height="30dp"
+        android:src="@drawable/star_white" android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" android:layout_marginTop="28dp" android:alpha="0.0" />
 
-    <!-- Estrellas decorativas en las esquinas -->
-    <ImageView
-        android:id="@+id/star_top_left"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:alpha="0.8"/>
+    <ImageView android:id="@+id/star_3" android:layout_width="28dp" android:layout_height="28dp"
+        android:src="@drawable/star_magic" android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" android:layout_marginEnd="20dp"
+        android:layout_marginTop="19dp" android:alpha="0.0" />
 
-    <ImageView
-        android:id="@+id/star_top_right"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="20dp"
-        android:alpha="0.7"/>
+    <ImageView android:id="@+id/star_4" android:layout_width="24dp" android:layout_height="24dp"
+        android:src="@drawable/star_rainbow" android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" android:layout_marginStart="25dp"
+        android:layout_marginBottom="30dp" android:alpha="0.0" />
 
-    <ImageView
-        android:id="@+id/star_bottom_left"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        android:alpha="0.7"/>
+    <ImageView android:id="@+id/star_5" android:layout_width="26dp" android:layout_height="26dp"
+        android:src="@drawable/star_glow" android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp" android:alpha="0.0" />
 
-    <ImageView
-        android:id="@+id/star_bottom_right"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:src="@drawable/star_glow"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="18dp"
-        android:alpha="0.9"/>
+    <ImageView android:id="@+id/star_6" android:layout_width="32dp" android:layout_height="32dp"
+        android:src="@drawable/star_white" android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" android:layout_marginBottom="36dp" android:alpha="0.0" />
+
+    <!-- Center stars for extra twinkle -->
+    <ImageView android:id="@+id/star_7" android:layout_width="24dp" android:layout_height="24dp"
+        android:src="@drawable/star_magic" android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" android:alpha="0.0" />
+
+    <ImageView android:id="@+id/star_8" android:layout_width="22dp" android:layout_height="22dp"
+        android:src="@drawable/star_rainbow" android:layout_centerVertical="true"
+        android:layout_marginStart="58dp" android:layout_marginTop="104dp"
+        android:layout_alignParentStart="true" android:alpha="0.0" />
+
+    <ImageView android:id="@+id/star_9" android:layout_width="28dp" android:layout_height="28dp"
+        android:src="@drawable/star_glow" android:layout_centerVertical="true"
+        android:layout_marginEnd="58dp" android:layout_marginTop="104dp"
+        android:layout_alignParentEnd="true" android:alpha="0.0" />
+
+    <ImageView android:id="@+id/star_10" android:layout_width="24dp" android:layout_height="24dp"
+        android:src="@drawable/star_white" android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp" android:layout_alignParentTop="true" android:alpha="0.0" />
 
     <LinearLayout
         android:id="@+id/center_content"
@@ -81,22 +62,20 @@
 
         <ImageView
             android:id="@+id/avatar_celebrating"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
             android:src="@drawable/celebrate"
             android:contentDescription="Avatar celebrating"
             android:layout_marginBottom="24dp"/>
-
         <TextView
             android:id="@+id/milestone_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Congratulations! You reached 50 points!"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textColor="#FFD600"
             android:gravity="center"
             android:layout_marginBottom="32dp"/>
-
         <Button
             android:id="@+id/button_magic_shop"
             android:layout_width="wrap_content"
@@ -107,7 +86,6 @@
             android:backgroundTint="#7C4DFF"
             android:elevation="3dp"
             android:layout_marginBottom="10dp"/>
-
         <Button
             android:id="@+id/button_main_menu"
             android:layout_width="wrap_content"
@@ -118,8 +96,6 @@
             android:backgroundTint="#6D4C41"
             android:elevation="3dp"
             android:layout_marginBottom="10dp"/>
-
-        <!-- NUEVO botón Continue -->
         <Button
             android:id="@+id/button_continue"
             android:layout_width="wrap_content"

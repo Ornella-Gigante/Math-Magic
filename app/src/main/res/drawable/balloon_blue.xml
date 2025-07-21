@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="72dp"
+    android:viewportWidth="48"
+    android:viewportHeight="72">
+
+    <!-- Elipse/globo azul -->
+    <path
+        android:pathData="M24,6
+            a16,22 0 1,0 0,44
+            a16,22 0 1,0 0,-44"
+        android:fillColor="#42A5F5" />
+
+    <!-- Cuerda del globo -->
+    <path
+        android:pathData="M24,50 L24,70"
+        android:strokeColor="#1976D2"
+        android:strokeWidth="2"
+        android:fillColor="@android:color/transparent"/>
+</vector>
