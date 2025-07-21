@@ -3,7 +3,6 @@ package es.nellagames.myapplication;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -27,19 +26,19 @@ public class MilestoneActivity extends AppCompatActivity {
         mediaPlayer.start();
 
         int milestone = getIntent().getIntExtra("milestone", 0);
-        // Recuperar índice de pregunta si viene del quiz
+        // Recuperar índice de pregunta
         resumeQuestionIndex = getIntent().getIntExtra("resume_question_index", -1);
 
         ImageView avatarCelebrating = findViewById(R.id.avatar_celebrating);
         TextView milestoneMessage = findViewById(R.id.milestone_message);
 
-        if (milestone >= 80) {
-            milestoneMessage.setText("Great! You reached " + milestone + " magic points!");
-            avatarCelebrating.setImageResource(R.drawable.wizard);
-        } else if (milestone >= 30) {
+        if (milestone == 80) {
             milestoneMessage.setText("Legendary! You reached " + milestone + " magic points!");
+            avatarCelebrating.setImageResource(R.drawable.wizard);
+        } else if (milestone == 30) {
+            milestoneMessage.setText("Great! You reached " + milestone + " magic points!");
             avatarCelebrating.setImageResource(R.drawable.delfin);
-        } else if (milestone >= 50) {
+        } else if (milestone == 50) {
             milestoneMessage.setText("Amazing! You reached " + milestone + " magic points!");
             avatarCelebrating.setImageResource(R.drawable.boy);
         } else {
@@ -68,14 +67,13 @@ public class MilestoneActivity extends AppCompatActivity {
             stopMusic();
             Intent intent = new Intent(MilestoneActivity.this, QuizGroupActivity.class);
             if (resumeQuestionIndex != -1) {
-                intent.putExtra("resume_question_index", resumeQuestionIndex);
+                intent.putExtra("resume_question_index", resumeQuestionIndex); // <-- índice SIGUIENTE
             }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
         });
 
-        // Animar 10 estrellas (como en tu main) para la experiencia mágica
         animateFadeStar(findViewById(R.id.star_1), 0);
         animateFadeStar(findViewById(R.id.star_2), 350);
         animateFadeStar(findViewById(R.id.star_3), 650);
@@ -103,7 +101,7 @@ public class MilestoneActivity extends AppCompatActivity {
         set.addListener(new android.animation.AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(android.animation.Animator animation) {
-                set.start(); // Loop infinito
+                set.start();
             }
         });
         set.start();

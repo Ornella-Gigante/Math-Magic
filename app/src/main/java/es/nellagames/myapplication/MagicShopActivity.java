@@ -2,7 +2,6 @@ package es.nellagames.myapplication;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,16 +17,13 @@ public class MagicShopActivity extends AppCompatActivity {
     private TextView pointsView;
     private Button unlockAvatar1, unlockAvatar2, unlockAvatar3, unlockAvatar4, unlockAvatar5;
     private ImageView avatar1, avatar2, avatar3, avatar4, avatar5;
-    private MediaPlayer magicShopPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magic_shop);
 
-        magicShopPlayer = MediaPlayer.create(this, R.raw.music_intro);
-        magicShopPlayer.setLooping(true);
-        magicShopPlayer.start();
+        // NO MediaPlayer aquí. Música se gestiona desde MusicService iniciado en MainActivity.
 
         pointsView = findViewById(R.id.text_points);
         unlockAvatar1 = findViewById(R.id.button_unlock_avatar1);
@@ -119,25 +115,19 @@ public class MagicShopActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         refreshShop();
-        if (magicShopPlayer != null && !magicShopPlayer.isPlaying()) {
-            magicShopPlayer.start();
-        }
+        // No empieces, detengas ni pauses el MediaPlayer aquí.
+        // La música persiste en MusicService.
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (magicShopPlayer != null && magicShopPlayer.isPlaying()) {
-            magicShopPlayer.pause();
-        }
+        // No pauses ni detengas la música aquí.
     }
 
     @Override
     protected void onDestroy() {
-        if (magicShopPlayer != null) {
-            magicShopPlayer.release();
-            magicShopPlayer = null;
-        }
+        // No detengas la música aquí.
         super.onDestroy();
     }
 
