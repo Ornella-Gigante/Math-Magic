@@ -1,5 +1,7 @@
 package es.nellagames.myapplication;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -76,6 +78,36 @@ public class MilestoneActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void animateBalloons() {
+        ImageView balloonLeft = findViewById(R.id.balloon_left);
+        ImageView balloonRight = findViewById(R.id.balloon_right);
+
+        ObjectAnimator leftRise = ObjectAnimator.ofFloat(balloonLeft, "translationY", 0f, -40f, 0f);
+        leftRise.setDuration(3000);
+        leftRise.setRepeatCount(ObjectAnimator.INFINITE);
+        leftRise.setRepeatMode(ObjectAnimator.REVERSE);
+
+        ObjectAnimator leftFloat = ObjectAnimator.ofFloat(balloonLeft, "translationX", 0f, 15f, 0f);
+        leftFloat.setDuration(4500);
+        leftFloat.setRepeatCount(ObjectAnimator.INFINITE);
+        leftFloat.setRepeatMode(ObjectAnimator.REVERSE);
+
+        ObjectAnimator rightRise = ObjectAnimator.ofFloat(balloonRight, "translationY", 0f, -45f, 0f);
+        rightRise.setDuration(3200);
+        rightRise.setRepeatCount(ObjectAnimator.INFINITE);
+        rightRise.setRepeatMode(ObjectAnimator.REVERSE);
+
+        ObjectAnimator rightFloat = ObjectAnimator.ofFloat(balloonRight, "translationX", 0f, -15f, 0f);
+        rightFloat.setDuration(4800);
+        rightFloat.setRepeatCount(ObjectAnimator.INFINITE);
+        rightFloat.setRepeatMode(ObjectAnimator.REVERSE);
+
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(leftRise, leftFloat, rightRise, rightFloat);
+        set.start();
+    }
+
 
     private void stopMusic() {
         if (mediaPlayer != null) {

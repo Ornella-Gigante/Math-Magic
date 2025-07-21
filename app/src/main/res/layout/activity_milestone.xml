@@ -5,6 +5,27 @@
     android:background="@drawable/gradient_purple"
     android:padding="24dp">
 
+    <!-- Balloons instead of stars -->
+    <ImageView
+        android:id="@+id/balloon_left"
+        android:layout_width="48dp"
+        android:layout_height="72dp"
+        android:src="@drawable/balloon_red"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="Red balloon" />
+
+    <ImageView
+        android:id="@+id/balloon_right"
+        android:layout_width="48dp"
+        android:layout_height="72dp"
+        android:src="@drawable/balloon_blue"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="Blue balloon" />
+
     <!-- Estrellas decorativas en las esquinas -->
     <ImageView
         android:id="@+id/star_top_left"
