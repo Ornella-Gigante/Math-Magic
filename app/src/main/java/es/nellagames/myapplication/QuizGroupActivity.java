@@ -60,7 +60,6 @@ public class QuizGroupActivity extends AppCompatActivity {
             {"7", "8", "6", "5"}
     };
 
-    // Correct answer indices, verified for each question
     private int[] correctAnswers = {
             2, // "8" for 3 + 5
             2, // "7" for 3 + 4 apples
@@ -91,7 +90,16 @@ public class QuizGroupActivity extends AppCompatActivity {
         mediaPlayer.start();
 
         SharedPreferences prefs = getSharedPreferences("math_magic_prefs", MODE_PRIVATE);
+
         magicPoints = prefs.getInt("magic_points", 0);
+
+        // Recupera el índice si viene por extra de milestone, sino de las preferencias
+        int resumeIndex = getIntent().getIntExtra("resume_question_index", -1);
+        if (resumeIndex != -1) {
+            currentQuestionIndex = resumeIndex;
+        } else {
+            currentQuestionIndex = prefs.getInt("current_question_index", 0);
+        }
 
         TextView questionView = findViewById(R.id.text_question);
 
@@ -123,6 +131,9 @@ public class QuizGroupActivity extends AppCompatActivity {
                 magicPoints += 10;
                 prefs.edit().putInt("magic_points", magicPoints).apply();
 
+                // Antes de milestone: GUARDA el índice actual
+                prefs.edit().putInt("current_question_index", currentQuestionIndex).apply();
+
                 // Milestone logic (example for 50, 60, 70 points)
                 int[] milestones = {50,60,70};
                 int lastMilestone = prefs.getInt("last_milestone", 0);
@@ -131,8 +142,9 @@ public class QuizGroupActivity extends AppCompatActivity {
                         prefs.edit().putInt("last_milestone", milestone).apply();
                         Intent milestoneIntent = new Intent(QuizGroupActivity.this, MilestoneActivity.class);
                         milestoneIntent.putExtra("milestone", milestone);
+                        milestoneIntent.putExtra("resume_question_index", currentQuestionIndex);
                         startActivity(milestoneIntent);
-                        finish(); // End this activity until milestone is dismissed
+                        finish(); // Fin de esta actividad hasta volver del milestone
                         return;
                     }
                 }
@@ -159,6 +171,8 @@ public class QuizGroupActivity extends AppCompatActivity {
                         mediaPlayer.release();
                         mediaPlayer = null;
                     }
+                    // Al terminar el quiz, limpia el estado de índice guardado
+                    prefs.edit().remove("current_question_index").apply();
                     Intent intent = new Intent(QuizGroupActivity.this, ResultsActivity.class);
                     intent.putExtra("score", magicPoints / 10);
                     intent.putExtra("total", questions.length);
@@ -168,6 +182,7 @@ public class QuizGroupActivity extends AppCompatActivity {
             }, 1300);
         });
 
+        // Animación de estrellas
         animateFadeStar(findViewById(R.id.star_1), 0);
         animateFadeStar(findViewById(R.id.star_2), 350);
         animateFadeStar(findViewById(R.id.star_3), 880);
