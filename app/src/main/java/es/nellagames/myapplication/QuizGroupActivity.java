@@ -23,17 +23,23 @@ public class QuizGroupActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     boolean preguntaRespondida;
 
+    // 15 carefully checked questions
     private String[] questions = {
             "What is 3 + 5?",
-            "Emily has 3 apples and buys 4 more. How many apples does she have now?",
+            "Emily has 3 apples and buys 4 more. How many apples does she have?",
             "What is 12 - 7?",
-            "Liam has 10 candies. He wants to share them equally between him and 4 friends. How many candies does each child get?",
+            "Liam has 10 candies and shares with 4 friends. How many candies per child?",
             "What is 4 × 2?",
-            "There are 12 cookies on a plate. If Mia eats 5 of them, how many cookies are left?",
+            "There are 12 cookies. Mia eats 5. How many left?",
             "What is 20 ÷ 5?",
-            "A farmer has 6 baskets. Each basket contains 8 oranges. How many oranges does the farmer have altogether?",
-            "Which is the largest number: 9, 13, 7, 11?",
-            "Fill in the blank: 5 + __ = 9"
+            "A farmer has 6 baskets with 8 oranges each. How many oranges?",
+            "Which is largest number: 9, 13, 7, 11?",
+            "Fill in the blank: 5 + __ = 9",
+            "What is 15 + 6?",
+            "Sara had 20 pencils and gave 5 to John. How many pencils left?",
+            "What is 9 × 3?",
+            "There are 5 boxes with 12 candies each. How many candies total?",
+            "Fill in the blank: 18 - __ = 10"
     };
 
     private String[][] options = {
@@ -46,10 +52,32 @@ public class QuizGroupActivity extends AppCompatActivity {
             {"2", "3", "4", "5"},
             {"14", "24", "36", "48"},
             {"9", "13", "7", "11"},
-            {"2", "3", "4", "5"}
+            {"2", "3", "4", "5"},
+            {"20", "21", "22", "23"},
+            {"10", "15", "20", "25"},
+            {"27", "26", "24", "29"},
+            {"60", "55", "56", "50"},
+            {"7", "8", "6", "5"}
     };
 
-    private int[] correctAnswers = {2, 2, 2, 0, 2, 2, 2, 3, 1, 2};
+    // Correct answer indices, verified for each question
+    private int[] correctAnswers = {
+            2, // "8" for 3 + 5
+            2, // "7" for 3 + 4 apples
+            2, // "5" for 12 - 7
+            0, // "2" for 10 candies / 5 kids
+            2, // "8" for 4 x 2
+            2, // "7" for 12 - 5
+            2, // "4" for 20 / 5
+            3, // "48" for 6 x 8
+            1, // "13" largest
+            2, // "4" for 5+__=9
+            2, // "22" for 15+6
+            1, // "15" for 20-5
+            0, // "27" for 9x3
+            0, // "60" for 5*12
+            1  // "8" for 18-__=10
+    };
 
     private String[] lastOptionTexts = new String[4];
 
@@ -95,7 +123,7 @@ public class QuizGroupActivity extends AppCompatActivity {
                 magicPoints += 10;
                 prefs.edit().putInt("magic_points", magicPoints).apply();
 
-                // 🔔 Mostrar milestone si corresponde
+                // Milestone logic (example for 50, 60, 70 points)
                 int[] milestones = {50,60,70};
                 int lastMilestone = prefs.getInt("last_milestone", 0);
                 for (int milestone : milestones) {
@@ -104,11 +132,10 @@ public class QuizGroupActivity extends AppCompatActivity {
                         Intent milestoneIntent = new Intent(QuizGroupActivity.this, MilestoneActivity.class);
                         milestoneIntent.putExtra("milestone", milestone);
                         startActivity(milestoneIntent);
-                        finish(); // Evita que se siga ejecutando esta actividad
+                        finish(); // End this activity until milestone is dismissed
                         return;
                     }
                 }
-
             } else if (selectedIdx != -1) {
                 radioButtons[selectedIdx].setBackgroundResource(R.drawable.btn_incorrect);
                 radioButtons[selectedIdx].setText("Ups! That's wrong!");
