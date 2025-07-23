@@ -1,6 +1,6 @@
 # Math Magic 🧙‍♂️✨
 
-Welcome to **Math Magic**, a fun and simple educational game for kids! Help your wizard solve math challenges, cast spells, and unlock magical rewards while learning. Perfect for primary school students and easy to expand!!
+Welcome to **Math Magic**, a fun and simple educational game for kids! Help your wizard solve math challenges, cast spells, and unlock magical rewards while learning. Perfect for primary school students and easy to expand!
 
 ## 🚀 Overview
 
