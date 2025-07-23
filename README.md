@@ -4,7 +4,7 @@ Welcome to **Math Magic**, a fun and simple educational game for kids! Help your
 
 ## 🚀 Overview
 
-**Math Magic** is an Android game where you play as a young wizard apprentice. To cast spells and progress through magical rooms, you must solve math problems. Each correct answer brings you closer to becoming a true Math Wizard
+**Math Magic** is an Android game where you play as a young wizard apprentice. To cast spells and progress through magical rooms, you must solve math problems. Each correct answer brings you closer to becoming a true Math Wizard!
 
 
 <div align="center">
